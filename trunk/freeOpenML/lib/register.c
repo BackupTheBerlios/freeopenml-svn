@@ -34,7 +34,6 @@ u_int32_t
 mlInit (int argc, char** argv)
 {
 	char path[_POSIX_PATH_MAX]="\0";
-	char buffer[50];
 	const char* env;
 	int i=0;
 	DIR* plugindir;
@@ -77,6 +76,7 @@ mlInit (int argc, char** argv)
 u_int32_t
 mlExit (void)
 {
+	return 1;
 }
 
 u_int32_t

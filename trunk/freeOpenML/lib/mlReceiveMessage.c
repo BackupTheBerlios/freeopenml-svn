@@ -21,7 +21,7 @@ mlReceiveMessage( MLopenid openid, int16_t *status, MLpv** reply)
 {
 	struct mlID* id=(struct mlID*)openid;
 	errno=0;
-	int16_t length;
+	int32_t length;
 
 	mlPopMQueue(&(id->pipes[id->current_pipe].out), reply, &length,status);
 	if (errno)

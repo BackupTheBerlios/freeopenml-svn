@@ -36,13 +36,13 @@ all : plugin
 CFLAGS+= $(INCLUDEDIR) -Wall -fPIC -Werror-implicit-function-declaration
 
 plugin : $(lib_test_sources:%.c=../%.so)
-	$(SUCCESSMSG) $(CURDIR)$@
+	$(SUCCESSMSG) $(MSGSUBDIR)$@
 
 debug : CFLAGS+= -g3 -gdwarf-2 -O0
 debug : plugin
 
 clean :
-	$(CLEANINGMSG) $(CURDIR)
+	$(CLEANINGMSG) $(MSGSUBDIR)
 	rm -Rf *.o *.so .DEP
 
 
@@ -57,13 +57,13 @@ clean :
 
 #automatic compilation
 ../%.so: %.c
-	$(CCMESG)  $(CURDIR)$<
+	$(CCMESG)  $(MSGSUBDIR)$<
 	-rm -f $@
 	$(CC) -shared $(CFLAGS) $(INCLUDEDIR) -o $@ $<
 
 #automatic dependencies generation
 ../.DEP/%.d: %.c
-	$(DEPMSG) $(CURDIR)$<
+	$(DEPMSG) $(MSGSUBDIR)$<
 	mkdir -p .DEP
 	$(CC) $(INCLUDEDIR) -M $(CPPFLAGS) $< 2>&- > $@.$$$$; \
 	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \

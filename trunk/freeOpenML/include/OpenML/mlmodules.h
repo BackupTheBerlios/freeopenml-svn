@@ -179,10 +179,8 @@
 			MLpv* 								preset;
 			u_int32_t 						compAlignement;
 			u_int32_t 						bufferAlignement;
-			struct jack_desc** 		src;	//a pointer to an array of devices describer
-			u_int32_t 						srcCount;
-			struct jack_desc** 		dest;	//a pointer to an array of devices describer
-			u_int32_t 						destCount;
+			struct jack_desc* 		src;	
+			struct jack_desc* 		dest;	
 			char* 								feats;
 			size_t 								featsLength;
 		};

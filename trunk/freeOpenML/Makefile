@@ -18,13 +18,13 @@ target = lib drivers tests applications
 all :  $(target) 
 
 #your targets
-confiserie.Makefile : ./configure
+Makefile.confiserie : ./configure
 	./configure
 	
 debug : all
 
 clean : $(target)
-	rm confiserie.Makefile
+	rm Makefile.confiserie
 
 install: $(target)
 	$(INSTALLMSG) include in  $(INSTALL_PREFIX)/include"
@@ -35,7 +35,7 @@ install: $(target)
 #special rule :: with nothing that follow tells make to rebuild the target everytime
 #this rules runs make on the subtree
 $(target) ::
-	$(MAKE) $(MAKECMDGOALS) -C $@ CURDIR=$@/
+	$(MAKE) $(MAKECMDGOALS) -C $@ MSGSUBDIR=$@/
 
 runtest :
 	./test.sh 2>/dev/null
@@ -45,9 +45,9 @@ runtest :
 #in case of 'make' this can cause you not having the right behaviour
 #remember : a Makefile isn't linearly executed....
 export TOPSRC_DIR?=$(PWD)
-include $(TOPSRC_DIR)/confiserie.Makefile
+include $(TOPSRC_DIR)/Makefile.confiserie
 
 
 #your targets
-$(TOPSRC_DIR)/confiserie.Makefile : ./configure
+$(TOPSRC_DIR)/Makefile.confiserie : ./configure
 	./configure

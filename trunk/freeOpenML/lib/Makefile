@@ -54,7 +54,7 @@ debug : CFLAGS+= -g3 -gdwarf-2 -O0
 debug : all
 
 clean : 
-	$(CLEANINGMSG) $(CURDIR)
+	$(CLEANINGMSG) $(MSGSUBDIR)
 	rm -Rf *.o *.so* .DEP
 
 install :
@@ -72,7 +72,7 @@ install :
 #in case of 'make' this can cause you not having the right behaviour
 #remember : a Makefile isn't linearly executed....
 export TOPSRC_DIR?=$(PWD)
-include $(TOPSRC_DIR)/confiserie.Makefile
+include $(TOPSRC_DIR)/Makefile.confiserie
 
 
 #create the dependencies (the - is for avoiding it to be too verbose)

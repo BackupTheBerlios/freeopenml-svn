@@ -1,4 +1,18 @@
 #!/bin/sh
-. confiserie/init.sh "$@"
-confiserie/beautifull_make_rules.sh 
+export BUILD_MAKE_INC=YES
+export BUILD_CONFIG_H=YES
+
+if echo $0 | grep -q "^/"; then
+	export confiserie=$(echo $0 | awk '{gsub("/[^/]*$","/confiserie"); printf("%s\n",$0);}')
+else
+	export confiserie=$(echo $PWD/$0 | awk '{gsub("/[^/]*$","/confiserie"); printf("%s\n",$0);}')
+fi
+
+
+. $confiserie/init.sh "$@" &&
+($confiserie/beautifull_make_rules.sh &&
+$confiserie/test_cc.sh &&
+$confiserie/test_install.sh &&
+$confiserie/test_compile_c.sh $confiserie/OpenMLDep.c
+) ||clean_on_sig
 

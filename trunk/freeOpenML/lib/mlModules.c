@@ -79,6 +79,7 @@ featsToIds(size_t size,u_int64_t type, char* feats, MLpv* newMessage)
 int32_t 
 processMessage (MLpv* message, struct device_desc* dev)
 {
+	goto err;
 	err:
 		return errno;
 }
@@ -543,14 +544,19 @@ pathToMessage (struct path_desc* path)
 	newMessage[i].param=ML_PATH_COMPONENT_ALIGNEMENT;
 	newMessage[i].value.int32=path->compAlignement;
 	i++;
-	
-	i+=pointerArrayToIds(path->srcCount,ML_PATH_SRC_JACK_IDS, path->src, 
-								&newMessage[i]);
+
+	newMessage[i].param=ML_PATH_SRC_JACK_IDS;
+	newMessage[i].value.int64=path->src->desc.id;
+	/*i+=pointerArrayToIds(path->srcCount,ML_PATH_SRC_JACK_IDS, path->src, 
+								&newMessage[i]);*/
 	if ( errno )
 		goto err;
-	
-	i+=pointerArrayToIds(path->destCount,ML_PATH_DST_JACK_IDS, path->dest,
-								&newMessage[i]);
+
+	newMessage[i].param=ML_PATH_DST_JACK_IDS;
+	newMessage[i].value.int64=path->dest->desc.id;
+
+/*	i+=pointerArrayToIds(path->destCount,ML_PATH_DST_JACK_IDS, path->dest,
+								&newMessage[i]);*/
 	if ( errno )
 		goto err;
 	
@@ -660,7 +666,7 @@ updateXcodeId(struct xcode_desc* xcode, u_int64_t new_id)
 }
 
 
-static int32_t 
+int32_t 
 updateParamId(struct param_desc* params, u_int64_t new_id)
 {
 	params->id=new_id;
@@ -687,4 +693,5 @@ updateAllId(struct device_desc* dev, u_int64_t new_id)
 MLpv* 
 makeCapability(const u_int64_t id, struct device_desc* dev)
 {
+	return NULL;
 }
