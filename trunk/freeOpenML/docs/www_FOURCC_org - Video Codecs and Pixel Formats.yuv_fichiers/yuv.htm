@@ -1,0 +1,1127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0025)http://fourcc.org/yuv.php -->
+<HTML><HEAD><TITLE>FOURCC.org - YUV pixel formats</TITLE>
+<META http-equiv=content-type content=text/html;charset=iso-8859-1>
+<META content="MSHTML 6.00.2800.1458" name=GENERATOR>
+<SCRIPT src="yuv_fichiers/CSScriptLib.js" type=text/javascript></SCRIPT>
+<LINK media=screen href="yuv_fichiers/fcc.css" rel=stylesheet>
+<META
+content="video, codec, pixel format, FOURCC, fourc character code, multimedia, compress, decompress"
+name=keywords>
+<META
+content="FOURCC.org contains definitions of a large number of PC video codecs and pixel formats. Where available, download links are provided."
+name=Description>
+
+</HEAD>
+<BODY bgColor=black>
+<TABLE cellSpacing=2 cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top align=left>
+      <H2>YUV Formats </H2>
+      <P>YUV formats fall into two distinct groups, the <A
+      href="http://fourcc.org/yuv.php#Packed YUV Formats">packed formats</A>
+      where Y, U (Cb) and V (Cr) samples are packed together into macropixels
+      which are stored in a single array, and the <A
+      href="http://fourcc.org/yuv.php#Planar YUV Formats">planar formats</A>
+      where each component is stored as a separate array, the final image being
+      a fusing of the three separate planes.
+      <P>In the diagrams below, the numerical suffix attached to each Y, U or V
+      sample indicates the sampling position across the image line, so, for
+      example, V0 indicates the leftmost V sample and Yn indicates the Y sample
+      at the (n+1)th pixel from the left.
+      <P>Subsampling intervals in the horizontal and vertical directions may
+      merit some explanation. The horizontal subsampling interval describes how
+      frequently across a line a sample of that component is taken while the
+      vertical interval describes on which lines samples are taken. For example,
+      UYVY format has a horizontal subsampling period of 2 for both the U and V
+      components indicating that U and V samples are taken for every second
+      pixel across a line. Their vertical subsampling period is 1 indicating
+      that U and V samples are taken on each line of the image.
+      <P>For YVU9, though, the vertical subsampling interval is 4. This
+      indicates that U and V samples are only taken on every fourth line of the
+      original image. Since the horizontal sampling period is also 4, a single U
+      and a single V sample are taken for each square block of 16 image pixels.
+      </P>
+      <P>Microsoft has some MSDN pages defining YUV formats too. They seem to
+      miss quite a few formats but may be interesting:</P>
+      <UL>
+        <LI><A
+        href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/graphics/hh/graphics/dxvaguide_7xgn.asp">4:2:0
+        Video Pixel Formats</A>
+        <LI><A
+        href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/graphics/hh/graphics/dxvaguide_72g7.asp">4:2:2
+        Video Pixel Formats</A> </LI></UL>
+      <P>Also, if you are interested in YCrCb to RGB conversion, you may find <A
+      href="http://fourcc.org/fccyvrgb.php">this page</A> helpful.</P>
+      <H2><A name="Packed YUV Formats "></A>Packed YUV Formats </H2>
+      <TABLE cellSpacing=1 border=1>
+        <TBODY>
+        <TR>
+          <TD align=middle><STRONG>Label</STRONG></TD>
+          <TD align=middle><STRONG>FOURCC in Hex</STRONG></TD>
+          <TD align=middle><STRONG>Bits per pixel</STRONG></TD>
+          <TD><STRONG>Description</STRONG></TD></TR>
+        <TR>
+          <TD align=middle><A href="http://fourcc.org/yuv.php#AUV">AYUV</A></TD>
+          <TD align=middle>0x56555941</TD>
+          <TD align=middle>32</TD>
+          <TD>Combined YUV and alpha</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#CLJR">CLJR</A></TD>
+          <TD align=middle>0x524A4C43</TD>
+          <TD align=middle>8</TD>
+          <TD>Cirrus Logic format with 4 pixels packed into a u_int32. A form
+            of YUV 4:1:1 wiht less than 8 bits per Y, U and V sample.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#cyuv">cyuv</A></TD>
+          <TD align=middle>0x76757963</TD>
+          <TD align=middle>16</TD>
+          <TD>Essentially a copy of UYVY except that the sense of the height
+            is reversed - the image is upside down with respect to the UYVY
+            version.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#GREY">GREY</A></TD>
+          <TD align=middle>0x59455247</TD>
+          <TD align=middle>8</TD>
+          <TD>Apparently a duplicate of Y800 (and also, presumably, "Y8&nbsp;
+            ")</TD></TR>
+        <TR>
+          <TD align=middle>IRAW</TD>
+          <TD align=middle>0x57615349</TD>
+          <TD align=middle>?</TD>
+          <TD>Intel uncompressed YUV. I have no information on this format -
+            can you help?</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#IY41">IUYV</A></TD>
+          <TD align=middle>0x56595549</TD>
+          <TD align=middle>16</TD>
+          <TD>Interlaced version of UYVY (line order 0, 2, 4,....,1, 3, 5....)
+            registered by Silviu Brinzei of <A href="http://www.leadtools.com/"
+            target=_blank>Lead Technologies</A>.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#IY41">IY41</A></TD>
+          <TD align=middle>0x31345949</TD>
+          <TD align=middle>12</TD>
+          <TD>Interlaced version of Y41P (line order 0, 2, 4,....,1, 3, 5....)
+            registered by Silviu Brinzei of <A href="http://www.leadtools.com/"
+            target=_blank>Lead Technologies</A>.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#IYU1">IYU1</A></TD>
+          <TD align=middle>0x31555949</TD>
+          <TD align=middle>12</TD>
+          <TD>12 bit format used in mode 2 of the IEEE 1394 Digital Camera
+            1.04 spec. This is equivalent to <A
+            href="http://fourcc.org/yuv.php#Y411">Y411</A></TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#IYU2">IYU2</A></TD>
+          <TD align=middle>0x32555949</TD>
+          <TD align=middle>24</TD>
+          <TD>24 bit format used in mode 0 of the IEEE 1394 Digital Camera
+            1.04 spec</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#UYVY">UYNV</A></TD>
+          <TD align=middle>0x564E5955</TD>
+          <TD align=middle>16</TD>
+          <TD>A direct copy of <A
+            href="http://fourcc.org/yuv.php#UYVY">UYVY</A> registered by NVidia
+            to work around problems in some old codecs which did not like
+            hardware which offered more than 2 UYVY surfaces.</TD></TR>
+        <TR>
+          <TD align=middle>UYVP</TD>
+          <TD align=middle>0x50565955</TD>
+          <TD align=middle>24?</TD>
+          <TD>YCbCr 4:2:2 extended precision 10-bits per component in U0Y0V0Y1
+            order. Registered by <A href="mailto:ehlers@es.com">Rich Ehlers</A>
+            of Evans &amp; Sutherland. <FONT size=2>(Awaiting confirmation of
+            component packing structure)</FONT></TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#UYVY">UYVY</A></TD>
+          <TD align=middle>0x59565955</TD>
+          <TD align=middle>16</TD>
+          <TD>YUV 4:2:2 (Y sample at every pixel, U and V sampled at every
+            second pixel horizontally on each line). A macropixel contains 2
+            pixels in 1 u_int32.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#V210">V210</A></TD>
+          <TD align=middle>0x30313256</TD>
+          <TD align=middle>32</TD>
+          <TD>10-bit 4:2:2 YCrCb equivalent to the Quicktime format of the
+            same name.</TD></TR>
+        <TR>
+          <TD align=middle>V422</TD>
+          <TD align=middle>0x32323456</TD>
+          <TD align=middle>16</TD>
+          <TD>I am told that this is an upside down version of UYVY.</TD></TR>
+        <TR>
+          <TD align=middle>V655</TD>
+          <TD align=middle>0x35353656</TD>
+          <TD align=middle>16?</TD>
+          <TD>16 bit YUV 4:2:2 format registered by Vitec Multimedia. I have
+            no information on the component ordering or packing.</TD></TR>
+        <TR>
+          <TD align=middle>VYUY</TD>
+          <TD align=middle>0x59555956</TD>
+          <TD align=middle>?</TD>
+          <TD>ATI Packed YUV Data (format unknown but you can get hold of a
+            codec supporting it <A
+            href="http://www.ati.com/support/drivers/misc/ATIVCRX.html"
+            target=_blank>here</A>)</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#UYVY">Y422</A></TD>
+          <TD align=middle>0x32323459</TD>
+          <TD align=middle>16</TD>
+          <TD>Direct copy of UYVY as used by ADS Technologies Pyro WebCam
+            firewire camera.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#YUY2">YUY2</A></TD>
+          <TD align=middle>0x32595559</TD>
+          <TD align=middle>16</TD>
+          <TD>YUV 4:2:2 as for UYVY but with different component ordering
+            within the u_int32 macropixel.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#YUYV">YUYV</A></TD>
+          <TD align=middle>0x56595559</TD>
+          <TD align=middle>16</TD>
+          <TD>Duplicate of YUY2</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#YUY2">YUNV</A></TD>
+          <TD align=middle>0x564E5559</TD>
+          <TD align=middle>16</TD>
+          <TD>A direct copy of <A
+            href="http://fourcc.org/yuv.php#YUY2">YUY2</A> registered by NVidia
+            to work around problems in some old codecs which did not like
+            hardware which offered more than 2 YUY2 surfaces.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#YVYU">YVYU</A></TD>
+          <TD align=middle>0x55595659</TD>
+          <TD align=middle>16</TD>
+          <TD>YUV 4:2:2 as for UYVY but with different component ordering
+            within the u_int32 macropixel.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#Y41P">Y41P</A></TD>
+          <TD align=middle>0x50313459</TD>
+          <TD align=middle>12</TD>
+          <TD>YUV 4:1:1 (Y sample at every pixel, U and V sampled at every
+            fourth pixel horizontally on each line). A macropixel contains 8
+            pixels in 3 u_int32s.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#Y411">Y411</A></TD>
+          <TD align=middle>0x31313459</TD>
+          <TD align=middle>12</TD>
+          <TD>YUV 4:1:1 with a packed, 6 byte/4 pixel macroblock
+        structure.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#Y211">Y211</A></TD>
+          <TD align=middle>0x31313259</TD>
+          <TD align=middle>8</TD>
+          <TD>Packed YUV format with Y sampled at every second pixel across
+            each line and U and V sampled at every fourth pixel.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#Y41T">Y41T</A></TD>
+          <TD align=middle>0x54313459</TD>
+          <TD align=middle>12</TD>
+          <TD>Format as for Y41P but the lsb of each Y component is used to
+            signal pixel transparency .</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#Y42T">Y42T</A></TD>
+          <TD align=middle>0x54323459</TD>
+          <TD align=middle>16</TD>
+          <TD>Format as for UYVY but the lsb of each Y component is used to
+            signal pixel transparency .</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#YUVP">YUVP</A></TD>
+          <TD align=middle>0x50565559</TD>
+          <TD align=middle>24?</TD>
+          <TD>YCbCr 4:2:2 extended precision 10-bits per component in Y0U0Y1V0
+            order. Registered by <A href="mailto:ehlers@es.com">Rich Ehlers</A>
+            of Evans &amp; Sutherland. </TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#Y800">Y800</A></TD>
+          <TD align=middle>0x30303859</TD>
+          <TD align=middle>8</TD>
+          <TD>Simple, single Y plane for monochrome images.</TD></TR>
+        <TR>
+          <TD align=middle><A href="http://fourcc.org/yuv.php#Y8">Y8</A></TD>
+          <TD align=middle>0x20203859</TD>
+          <TD align=middle>8</TD>
+          <TD>Duplicate of Y800 as far as I can see.</TD></TR></TBODY></TABLE>
+      <H3><A name=AYUV></A>AYUV</H3>
+      <P>This is a 4:4:4 YUV format with 8 bit samples for each component along
+      with an 8 bit alpha blend value per pixel. Component ordering is A Y U V
+      (as the name suggests).</P>
+      <H3><A name=UYVY></A>UYVY (and Y422 and UYNV) </H3>
+      <P>UYVY is probably the most popular of the various YUV 4:2:2 formats. It
+      is output as the format of choice by the Radius Cinepak codec and is often
+      the second choice of software MPEG codecs after YV12. </P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>U Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>1</TD></TR></TBODY></TABLE>
+      <P>Effective bits per pixel : 16
+      <P>Positive biHeight implies top-down imge (top line first)
+      <P align=center><IMG height=100 src="yuv_fichiers/uyvy.gif" width=600></P>
+      <H3><A name=IUYV></A>IUYV</H3>
+      <P>IUYV is basically the same as UYVY with the exception that the data is
+      interlaced. Lines are ordered 0,2,4,....,1,3,5.... instead of
+      0,1,2,3,4,5,....</P>
+      <H3><A name=cyuv></A>cyuv </H3>
+      <P>This FOURCC, allegedly registered by Creative Labs, is essentially a
+      duplicate of UYVY. The only difference is that the image is flipped
+      vertically, the first u_int16 in the buffer representing the bottom line
+      of the viewed image. Note that the FOURCC is comprised of lower case
+      characters (so much for the upper case convention !)</P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>U Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>1</TD></TR></TBODY></TABLE>
+      <P>Effective bits per pixel : 16
+      <P>Positive biHeight implies bottom-up image (botton line first)
+      <P align=center><IMG height=100 src="yuv_fichiers/uyvy.gif" width=600></P>
+      <H3><A name=YUY2></A>YUY2 (and <A name=YUNV></A>YUNV and <A
+      name=V422></A>V422 and <A name=YUYV></A>YUYV)</H3>
+      <P>YUY2 is another in the family of YUV 4:2:2 formats and appears to be
+      used by all the same codecs as UYVY. </P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>U Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>1</TD></TR></TBODY></TABLE>
+      <P>Effective bits per pixel : 16
+      <P>Positive biHeight implies top-down image (top line first)
+      <P align=center><IMG height=100 src="yuv_fichiers/yuy2.gif" width=600>
+      <P align=left>There is a <A href="http://fourcc.org/fccyuy2.php">help page
+      here</A> which contains information on playing AVIs which include video
+      stored in YUY2 format.</P>
+      <H3><A name=YVYU></A>YVYU</H3>
+      <P>Despite being a simple byte ordering change from YUY2 or UYVY, YVYU
+      seems to be seen somewhat less often than the other two formats defined
+      above. </P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><FONT
+          face=Arial><STRONG>Horizontal</STRONG></FONT></TD>
+          <TD align=middle><FONT
+        face=Arial><STRONG>Vertical</STRONG></FONT></TD></TR>
+        <TR>
+          <TD><FONT face=Arial><STRONG>Y Sample Period</STRONG></FONT></TD>
+          <TD align=middle><FONT face=Arial>1</FONT></TD>
+          <TD align=middle><FONT face=Arial>1</FONT></TD></TR>
+        <TR>
+          <TD><FONT face=Arial><STRONG>V Sample Period</STRONG></FONT></TD>
+          <TD align=middle><FONT face=Arial>2</FONT></TD>
+          <TD align=middle><FONT face=Arial>1</FONT></TD></TR>
+        <TR>
+          <TD><FONT face=Arial><STRONG>U Sample Period</STRONG></FONT></TD>
+          <TD align=middle><FONT face=Arial>2</FONT></TD>
+          <TD align=middle><FONT face=Arial>1</FONT></TD></TR></TBODY></TABLE>
+      <P>Effective bits per pixel : 16
+      <P>Positive biHeight implies top-down image (top line first)
+      <P align=center><IMG height=100 src="yuv_fichiers/yvyu.gif" width=600></P>
+      <H3><A name=Y41P></A>Y41P</H3>
+      <P>This YUV 4:1:1 format is registered as a PCI standard format.
+      Mediamatics MPEG 1 engine is the only codec (other than a Brooktree
+      internal one) that I know of that can generate it. </P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V Sample Period</STRONG></TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>U Sample Period</STRONG></TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>1</TD></TR></TBODY></TABLE>
+      <P>Effective bits per pixel : 12
+      <P>Positive biHeight implies top-down image (top line first)
+      <P align=center><IMG height=100 src="yuv_fichiers/y41p.gif" width=600></P>
+      <H3><A name=Y411></A>Y411</H3>
+      <P>I was originally told that this was a duplicate of <A
+      href="http://fourcc.org/yuv.php#Y41P">Y41P</A> however it seems that this
+      is not the case after all. Y411 is a packed YUV 4:1:1 format with a 6
+      pixel macroblock structure containing 4 pixels. Component packing order
+      is:</P>
+      <DIV align=center>
+      <P><B>U2 Y0 Y1 V2 Y2 Y3</B></P></DIV>
+      <DIV align=left>
+      <P>I have not been able to find 100% confirmation of the position for the
+      U and V samples. I suspect that the chroma samples are probably both taken
+      at the position of Y2 but this is a guess just now. </P>
+      <P>I have recently been informed that this format is identical to<A
+      href="http://fourcc.org/yuv.php#IYU1"> IYU1</A>.</P></DIV>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V Sample Period</STRONG></TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>U Sample Period</STRONG></TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>1</TD></TR></TBODY></TABLE>
+      <P>Effective bits per pixel : 12</P>
+      <P>Positive biHeight implies top-down image (top line first) </P>
+      <H3><A name=IY41></A>IY41</H3>
+      <P>IY41 is basically the same as Y41P with the exception that the data is
+      interlaced. Lines are ordered 0,2,4,....,1,3,5.... instead of
+      0,1,2,3,4,5,....</P>
+      <H3><A name=Y211></A>Y211</H3>
+      <P>I have yet to find anything that will output Y211 ! The format looks
+      very much like the missing YUV 4:2:2 ordering but Y samples are only taken
+      on every second pixel. Think of it as a half width 4:2:2 image and double
+      the width on display. </P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V Sample Period</STRONG></TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>U Sample Period</STRONG></TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>1</TD></TR></TBODY></TABLE>
+      <P>Effective bits per pixel : 8
+      <P>Positive biHeight implies top-down image (top line first)
+      <P align=center><IMG height=100 src="yuv_fichiers/y211.gif" width=600></P>
+      <H3><A name=Y41T></A>Y41T</H3>
+      <P>This format is identical to <A
+      href="http://fourcc.org/yuv.php#Y41P">Y41P</A> except for the fact that
+      the least significant bit of each Y component forms a chromakey channel.
+      If this bit is set, the YUV image pixel is displayed, if cleared, the
+      pixel is transparent (and the underlying graphics pixel is shown).
+      <P>Positive biHeight implies top-down image (top line first)</P>
+      <H3><A name=Y42T></A>Y42T</H3>
+      <P>This format is identical to <A
+      href="http://fourcc.org/yuv.php#UYVY">UYVY</A> except for the fact that
+      the least significant bit of each Y component forms a chromakey channel.
+      If this bit is set, the YUV image pixel is displayed, if cleared, the
+      pixel is transparent (and the underlying graphics pixel is shown).
+      <P>Positive biHeight implies top-down image (top line first)</P>
+      <H3><A name=CLJR></A>CLJR</H3>
+      <P>Cirrus Logic's format packs 4 pixel samples into a single u_int32 by
+      sacrificing precision on each sample. Y samples are truncated to 5 bits
+      each, U and V have 6 bits per sample. </P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V Sample Period</STRONG></TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>U Sample Period</STRONG></TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>1</TD></TR></TBODY></TABLE>
+      <P>Effective bits per pixel : 8
+      <P>Positive biHeight implies top-down image (top line first)
+      <P><IMG height=100 src="yuv_fichiers/cljr.gif" width=600></P>
+      <H3><A name=IYU1></A>IYU1</H3>
+      <P>The IYU1 format is a 12 bit format used in mode 2 of the IEEE 1394
+      Digital Camera 1.04 spec ("1394-based Digital Camera Specification,
+      Version 1.04, August 9, 1996", page 14.). The format, a duplicate of <A
+      href="http://fourcc.org/yuv.php#Y411">Y411</A>, is YUV (4:1:1) according
+      to the following pattern:</P>
+      <DIV align=center>
+      <CENTER>
+      <TABLE border=1>
+        <TBODY>
+        <TR>
+          <TD align=right><B>Byte</B></TD>
+          <TD align=middle><B>0</B></TD>
+          <TD align=middle><B>1</B></TD>
+          <TD align=middle><B>2</B></TD>
+          <TD align=middle><B>3</B></TD>
+          <TD align=middle><B>4</B></TD>
+          <TD align=middle><SUB><B>5</B></SUB></TD></TR>
+        <TR>
+          <TD align=right><B>Sample</B></TD>
+          <TD>U<SUB>(K+0)</SUB></TD>
+          <TD>Y<SUB>(K+0)</SUB></TD>
+          <TD>Y<SUB>(K+1)</SUB></TD>
+          <TD>V<SUB>(K+0)</SUB></TD>
+          <TD>Y<SUB>(K+2)</SUB></TD>
+          <TD>Y<SUB>(K+3)</SUB></TD></TR></TBODY></TABLE></CENTER></DIV>
+      <P>&nbsp;</P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V Sample Period</STRONG></TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>U Sample Period</STRONG></TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>1</TD></TR></TBODY></TABLE>
+      <H3><A name=IYU2></A>IYU2</H3>
+      <P>The IYU2 format is a 24 bit format used in mode 0 of the IEEE 1394
+      Digital Camera 1.04 spec (ibid.) The format is YUV (4:4:4) according to
+      the following pattern:</P>
+      <DIV align=center>
+      <CENTER>
+      <TABLE border=1>
+        <TBODY>
+        <TR>
+          <TD align=right><B>Byte</B></TD>
+          <TD align=middle><B>0</B></TD>
+          <TD align=middle><B>1</B></TD>
+          <TD align=middle><B>2</B></TD>
+          <TD align=middle><SUB><B>3</B></SUB></TD>
+          <TD align=middle><B>4</B></TD>
+          <TD align=middle><SUB><B>5</B></SUB></TD></TR>
+        <TR>
+          <TD align=right><B>Sample</B></TD>
+          <TD>U<SUB>(K+0)</SUB></TD>
+          <TD>Y<SUB>(K+0)</SUB></TD>
+          <TD>V<SUB>(K+0)</SUB></TD>
+          <TD>U<SUB>(K+1)</SUB></TD>
+          <TD><SUB>Y(K+1)</SUB></TD>
+          <TD>V<SUB>(K+1)</SUB></TD></TR></TBODY></TABLE></CENTER></DIV>
+      <P></P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>U Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR></TBODY></TABLE>
+      <H3><A name=YUVP></A>YUVP</H3>
+      <P>This is another format similar to YUY2 and it's aliases. The difference
+      here is that each Y, U and V samples is 10 bits rather than 8. I&nbsp;am
+      still waiting to hear how the samples are packed - is a macropixel just 5
+      bytes long with all the samples packed together or is there more to it
+      than this?</P>
+      <H3><A name=V210></A>V210</H3>
+      <P><A href="http://www.aja.com/" target=_blank>AJA&nbsp;Video Systems</A>
+      have implemented this Quicktime format for Windows. It is a 10 bit per
+      component, YCrCb 4:2:2 format in which samples for 5 pixels are packed
+      into 4 4-byte little endian words. Rather than repeat the details here, I
+      suggest looking at the <A
+      href="http://developer.apple.com/quicktime/icefloe/dispatch019.html#v210"
+      target=_blank>original definition on the Quicktime web site</A>.</P>
+      <H2><A name="Planar YUV Formats"></A>Planar YUV Formats</H2>
+      <TABLE cellSpacing=1 border=1>
+        <TBODY>
+        <TR>
+          <TD align=middle><STRONG>Label</STRONG></TD>
+          <TD align=middle><STRONG>FOURCC in Hex</STRONG></TD>
+          <TD align=middle><STRONG>Bits per pixel</STRONG></TD>
+          <TD>
+            <P align=center><STRONG>Description</STRONG> </P></TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#YVU9">YVU9</A></TD>
+          <TD align=middle>0x39555659</TD>
+          <TD align=middle>9</TD>
+          <TD>8 bit Y plane followed by 8 bit 4x4 subsampled V and U planes.
+            Registered by Intel.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#YVU9">YUV9</A></TD>
+          <TD align=middle>0x39565559</TD>
+          <TD align=middle>9?</TD>
+          <TD>Registered by Intel. I have no other information on this format.
+            Probably a copy of YVU9.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#IF09">IF09</A></TD>
+          <TD align=middle>0x39304649</TD>
+          <TD align=middle>9.5</TD>
+          <TD>As YVU9 but an additional 4x4 subsampled plane is appended
+            containing delta information relative to the last frame. (Bpp is
+            reported as 9)</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#YV16">YV16</A></TD>
+          <TD align=middle>0x36315659</TD>
+          <TD align=middle>16</TD>
+          <TD>8 bit Y plane followed by 8 bit 2x1 subsampled V and U
+        planes.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#YV12">YV12</A></TD>
+          <TD align=middle>0x32315659</TD>
+          <TD align=middle>12</TD>
+          <TD>8 bit Y plane followed by 8 bit 2x2 subsampled V and U
+        planes.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#IYUV">I420</A></TD>
+          <TD align=middle>0x30323449</TD>
+          <TD align=middle>12</TD>
+          <TD>8 bit Y plane followed by 8 bit 2x2 subsampled U and V
+        planes.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#IYUV">IYUV</A></TD>
+          <TD align=middle>0x56555949</TD>
+          <TD align=middle>12</TD>
+          <TD>Duplicate FOURCC, identical to I420.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#NV12">NV12</A></TD>
+          <TD align=middle>0x3231564E</TD>
+          <TD align=middle>12</TD>
+          <TD>8-bit Y plane followed by an interleaved U/V plane with 2x2
+            subsampling</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#NV21">NV21</A></TD>
+          <TD align=middle>0x3132564E</TD>
+          <TD align=middle>12</TD>
+          <TD>As NV12 with U and V reversed in the interleaved plane</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#IMC1">IMC1</A></TD>
+          <TD align=middle>0x31434D49</TD>
+          <TD align=middle>12</TD>
+          <TD>As YV12 except the U and V planes each have the same stride as
+            the Y plane</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#IMC2">IMC2</A></TD>
+          <TD align=middle>0x32434D49</TD>
+          <TD align=middle>12</TD>
+          <TD>Similar to IMC1 except that the U and V lines are interleaved at
+            half stride boundaries</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#IMC3">IMC3</A></TD>
+          <TD align=middle>0x33434D49</TD>
+          <TD align=middle>12</TD>
+          <TD>As IMC1 except that U and V are swapped</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#IMC4">IMC4</A></TD>
+          <TD align=middle>0x34434D49</TD>
+          <TD align=middle>12</TD>
+          <TD>As IMC2 except that U and V are swapped</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#CLPL">CLPL</A></TD>
+          <TD align=middle>0x4C504C43</TD>
+          <TD align=middle>12</TD>
+          <TD>Format similar to YV12 but including a level of indirection.
+        </TD></TR>
+        <TR>
+          <TD align=middle>Y41B</TD>
+          <TD align=middle>0x42313459</TD>
+          <TD align=middle>12?</TD>
+          <TD>Weitek format listed as "YUV 4:1:1 planar". I have no other
+            information on this format.</TD></TR>
+        <TR>
+          <TD align=middle>Y42B</TD>
+          <TD align=middle>0x42323459</TD>
+          <TD align=middle>16?</TD>
+          <TD>Weitek format listed as "YUV 4:2:2 planar". I have no other
+            information on this format.</TD></TR>
+        <TR>
+          <TD align=middle><A
+href="http://fourcc.org/yuv.php#Y800">Y800</A></TD>
+          <TD align=middle>0x30303859</TD>
+          <TD align=middle>8</TD>
+          <TD>Simple, single Y plane for monochrome images.</TD></TR>
+        <TR>
+          <TD align=middle><A href="http://fourcc.org/yuv.php#Y800">Y8</A></TD>
+          <TD align=middle>0x20203859</TD>
+          <TD align=middle>8</TD>
+          <TD>Duplicate of Y800 as far as I can see.</TD></TR></TBODY></TABLE>
+      <H3><A name=YVU9></A>YVU9</H3>
+      <P>This format dates back to the days of the ActionMedia II adapter and
+      comprises an NxN plane of Y samples, 8 bits each, followed by (N/4)x(N/4)
+      V and U planes. </P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V Sample Period</STRONG></TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>4</TD></TR>
+        <TR>
+          <TD><STRONG>U Sample Period</STRONG></TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>4</TD></TR></TBODY></TABLE>
+      <P><IMG height=127 src="yuv_fichiers/yplane.gif" width=200> <IMG
+      height=127 src="yuv_fichiers/v4plane.gif" width=200> <IMG height=127
+      src="yuv_fichiers/u4plane.gif" width=200>
+      <P>Positive biHeight implies top-down image (top line first)</P>
+      <P>ATI has a codec supporting this format that you can download from <A
+      href="http://www.ati.com/support/drivers/misc/ATIVCRX.html"
+      target=_blank>here</A>.</P>
+      <H3><A name=IF09></A>IF09</H3>
+      <P>A derivative of YVU9, IF09 contains the basic 3 planes for Y, V and U
+      followed by an additional (N/4)x(N/4) plane of "skip blocks". This final
+      plane forms a basic delta encoding scheme which can be used by a displayer
+      to decide which pixels in the image are unchanged from the previous
+      displayed frame. The strange number of bits per pixel listed for the
+      format results from the fact that an NxN image is described using
+      N<SUP>2</SUP>+3(N/4)<SUP>2</SUP> bytes.
+      <P>This format is generated by Intel's Indeo codecs though users should
+      beware - the original 32 bit Indeo 3.2 shipped with Windows 95 and the
+      beta levels of Indeo 4.1 contain bugs which cause them to generate
+      protection faults when using IF09. Fixed versions of these codecs are
+      available from Intel. </P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V Sample Period</STRONG></TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>4</TD></TR>
+        <TR>
+          <TD><STRONG>U Sample Period</STRONG></TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>4</TD></TR></TBODY></TABLE>
+      <P><IMG height=127 src="yuv_fichiers/yplane.gif" width=200> <IMG
+      height=127 src="yuv_fichiers/v4plane.gif" width=200> <IMG height=127
+      src="yuv_fichiers/u4plane.gif" width=200>
+      <P>Positive biHeight implies top-down image (top line first)</P>
+      <H4>Delta plane definition</H4>
+      <P>To be completed...</P>
+      <H3><A name=YV12></A>YV12</H3>
+      <P>This is the format of choice for many software MPEG codecs. It
+      comprises an NxM Y plane followed by (N/2)x(M/2) V and U planes.</P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>2</TD></TR>
+        <TR>
+          <TD><STRONG>U Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>2</TD></TR></TBODY></TABLE>
+      <P><IMG height=127 src="yuv_fichiers/yplane.gif" width=200> <IMG
+      height=127 src="yuv_fichiers/v2plane.gif" width=200> <IMG height=127
+      src="yuv_fichiers/u2plane.gif" width=200> &nbsp;
+      <P>Positive biHeight implies top-down image (top line first)</P>
+      <P>ATI has a codec supporting this format that you can download from <A
+      href="http://www.ati.com/support/drivers/misc/ATIVCRX.html"
+      target=_blank>here</A>.</P>
+      <H3><A name=YV16></A>YV16</H3>
+      <P>This format is basically a version of<A
+      href="http://fourcc.org/yuv.php#YV12"> YV12</A> with higher chroma
+      resolution. It comprises an NxM Y plane followed by (N/2)xM U and V
+      planes.</P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>U Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>1</TD></TR></TBODY></TABLE>
+      <H3><A name=IYUV></A>IYUV and I420</H3>
+      <P>These formats are identical to YV12 except that the U and V plane order
+      is reversed. They comprise an NxN Y plane followed by (N/2)x(N/2) U and V
+      planes. Full marks to Intel for registering the same format twice and full
+      marks to Microsoft for not picking up on this and rejecting the second
+      registration. </P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>2</TD></TR>
+        <TR>
+          <TD><STRONG>U Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>2</TD></TR></TBODY></TABLE>
+      <P><IMG height=127 src="yuv_fichiers/yplane.gif" width=200> <IMG
+      height=127 src="yuv_fichiers/u2plane.gif" width=200> <IMG height=127
+      src="yuv_fichiers/v2plane.gif" width=200>
+      <P>Positive biHeight implies top-down image (top line first)</P>
+      <H3><A name=CLPL></A>CLPL</H3>
+      <P>This format introduces an extra level of indirection in the process of
+      accessing YUV pixels in the surface. Locking the DirectDraw or DCI CLPL
+      surface returns a pointer which itself points to three other pointers.
+      These pointers respectively point to an NxN Y plane, an (N/2)x(N/2) U
+      plane and an (N/2)x(N/2) V plane. The Y plane pointer retrieved is
+      (allegedly) valid even when the surface is subsequently unlocked but the U
+      and V pointers can only be used with a lock held (as you should be doing
+      anyway if adhereing to the DirectDraw/DCI spec).</P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>2</TD></TR>
+        <TR>
+          <TD><STRONG>U Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>2</TD></TR></TBODY></TABLE>
+      <P><IMG height=127 src="yuv_fichiers/yplane.gif" width=200> <IMG
+      height=127 src="yuv_fichiers/u2plane.gif" width=200> <IMG height=127
+      src="yuv_fichiers/v2plane.gif" width=200>
+      <P>Positive biHeight implies top-down image (top line first)
+      <H3><A name=Y800></A>Y800</H3>
+      <P>This format contains only a single, 8 bit Y plane for monochrome
+      images. Apparent duplicate FOURCCs are "<A name=Y8></A>Y8" and "<A
+      name=GREY></A>GREY".</P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V Sample Period</STRONG></TD>
+          <TD align=middle>N/A</TD>
+          <TD align=middle>N/A</TD></TR>
+        <TR>
+          <TD><STRONG>U Sample Period</STRONG></TD>
+          <TD align=middle>N/A</TD>
+          <TD align=middle>N/A</TD></TR></TBODY></TABLE>
+      <P><IMG height=127 src="yuv_fichiers/yplane.gif" width=200>&nbsp;&nbsp;
+      <H3><A name=NV12></A>NV12</H3>
+      <P>YUV 4:2:0 image with a plane of 8 bit Y samples followed by an
+      interleaved U/V plane containing 8 bit 2x2 subsampled colour difference
+      samples.</P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V (Cr) Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>2</TD></TR>
+        <TR>
+          <TD><STRONG>U (Cb) Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>2</TD></TR></TBODY></TABLE>
+      <P>Microsoft defines this format as follows:
+      <BLOCKQUOTE>
+        <P>&nbsp;"A format in which all Y samples are found first in memory as
+        an array of unsigned char with an even number of lines (possibly with a
+        larger stride for memory alignment), followed immediately by an array of
+        unsigned char containing interleaved Cb and Cr samples (such that if
+        addressed as a little-endian WORD type, Cb would be in the LSBs and Cr
+        would be in the MSBs) with the same total stride as the Y samples. This
+        is the preferred 4:2:0 pixel format." </P></BLOCKQUOTE>
+      <H3><A name=NV21></A>NV21</H3>
+      <P>YUV 4:2:0 image with a plane of 8 bit Y samples followed by an
+      interleaved V/U plane containing 8 bit 2x2 subsampled chroma samples. The
+      same as <A href="http://fourcc.org/yuv.php#NV12">NV12</A> except the
+      interleave order of U and V is reversed.</P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V (Cr) Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>2</TD></TR>
+        <TR>
+          <TD><STRONG>U (Cb) Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>2</TD></TR></TBODY></TABLE>
+      <P>Microsoft defines this format as follows:
+      <BLOCKQUOTE>
+        <P>&nbsp;"The same as <A href="http://fourcc.org/yuv.php#NV12">NV12</A>,
+        except that Cb and Cr samples are swapped so that the chroma array of
+        unsigned char would have Cr followed by Cb for each sample (such that if
+        addressed as a little-endian WORD type, Cr would be in the LSBs and Cb
+        would be in the MSBs)." </P></BLOCKQUOTE>
+      <H3><A name=IMC1></A>IMC1</H3>
+      <P><IMG height=233 alt="IMC1 layout" src="yuv_fichiers/imc1.gif" width=119
+      align=right border=0>Similar to <A
+      href="http://fourcc.org/yuv.php#YV12">YV12</A>, this format comprises an
+      NxN Y plane followed by (N/2)x(N/2) U and V planes. The U and V planes
+      have the same stride as the Y plane and are restricted to start on 16 line
+      boundaries.</P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V (Cr) Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>2</TD></TR>
+        <TR>
+          <TD><STRONG>U (Cb) Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>2</TD></TR></TBODY></TABLE>
+      <P>Microsoft defines this format as follows:
+      <BLOCKQUOTE>
+        <P>&nbsp;"The same as <A href="http://fourcc.org/yuv.php#YV12">YV12</A>,
+        except that the stride of the Cb and Cr planes is the same as the stride
+        in the Y plane. The Cb and Cr planes are also restricted to fall on
+        memory boundaries that are a multiple of 16 lines (a restriction that
+        has no effect on usage for the standard formats, since the standards all
+        use 16×16 macroblocks)." </P></BLOCKQUOTE>
+      <H3><A name=IMC2></A>IMC2</H3>
+      <P><IMG height=176 alt="IMC2 layout" src="yuv_fichiers/imc2.gif" width=118
+      align=right border=0>Similar to <A
+      href="http://fourcc.org/yuv.php#YV12">YV12</A>, this format comprises an
+      NxN Y plane followed by "rectangularly adjacent" (N/2)x(N/2) U and V
+      planes. Lines of U and V pixels are interleaved at half stride boundaries
+      below the Y plane.</P>
+      <TABLE cellPadding=2 border=1>
+        <TBODY>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD align=middle><STRONG>Horizontal</STRONG></TD>
+          <TD align=middle><STRONG>Vertical</STRONG></TD></TR>
+        <TR>
+          <TD><STRONG>Y Sample Period</STRONG></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR>
+        <TR>
+          <TD><STRONG>V (Cr) Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>2</TD></TR>
+        <TR>
+          <TD><STRONG>U (Cb) Sample Period</STRONG></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>2</TD></TR></TBODY></TABLE>
+      <P>Microsoft defines this format as follows:
+      <BLOCKQUOTE>
+        <P>&nbsp;"The same as <A href="http://fourcc.org/yuv.php#IMC1">IMC1</A>,
+        except that Cb and Cr lines are interleaved at half-stride boundaries.
+        In other words, each full-stride line in the chrominance area starts
+        with a line of Cr, followed by a line of Cb that starts at the next
+        half-stride boundary. (This is a more address-space-efficient format
+        than <A href="http://fourcc.org/yuv.php#IMC1">IMC1</A>, cutting the
+        chrominance address space in half, and thus cutting the total address
+        space by 25%.) This runs a close second in preference relative to <A
+        href="http://fourcc.org/yuv.php#NV12">NV12</A>, but <A
+        href="http://fourcc.org/yuv.php#NV12">NV12</A> appears to be more
+        popular." </P></BLOCKQUOTE>
+      <H3><A name=IMC3></A>IMC3</H3>
+      <P>The same as <A href="http://fourcc.org/yuv.php#IMC1">IMC1</A> except
+      for swapping the U and V order.
+      <H3><A name=IMC4></A>IMC4</H3>
+      <P>The same as <A href="http://fourcc.org/yuv.php#IMC2">IMC2</A> except
+      for swapping the U and V order.
+      <P></P></TD>
+    <TD vAlign=top align=left width=120>
+      <SCRIPT type=text/javascript><!--
+google_ad_client = "pub-1877141572110293";
+google_ad_width = 120;
+google_ad_height = 600;
+google_ad_format = "120x600_as";
+google_color_border = "333333";
+google_color_bg = "000000";
+google_color_link = "FFFFFF";
+google_color_url = "999999";
+google_color_text = "CCCCCC";
+google_page_url = document.location;
+//--></SCRIPT>
+
+      <SCRIPT src="yuv_fichiers/show_ads.js" type=text/javascript>
+</SCRIPT>
+    </TD></TR>
+  <TR>
+    <TD vAlign=top align=right colSpan=2>
+      <TABLE cellSpacing=2 cellPadding=0 border=0>
+        <TBODY>
+        <TR>
+          <TD>
+            <FORM action=http://www.google.com/custom method=get>
+            <TABLE bgColor=#ffffff>
+              <TBODY>
+              <TR>
+                <TD vAlign=top noWrap align=middle height=32><A
+                  href="http://www.google.com/"><IMG alt=Google
+                  src="yuv_fichiers/Logo_25wht.gif" border=0></A></TD>
+                <TD><INPUT type=hidden value=www.fourcc.org
+                  name=domains><INPUT maxLength=255 size=31 name=q> <INPUT type=submit value=Search name=sa></TD></TR>
+              <TR>
+                <TD>&nbsp;</TD>
+                <TD><FONT color=#000000 size=-1><INPUT type=radio value=""
+                  name=sitesearch> Web <INPUT type=radio CHECKED
+                  value=www.fourcc.org name=sitesearch>www.fourcc.org
+                  <BR></FONT><INPUT type=hidden value=pub-1877141572110293
+                  name=client> <INPUT type=hidden value=1 name=forid> <INPUT
+                  type=hidden value=ISO-8859-1 name=ie> <INPUT type=hidden
+                  value=ISO-8859-1 name=oe> <INPUT type=hidden
+                  value=GALT:#FFFF00;GL:1;DIV:#CCCCCC;VLC:FFFF99;AH:center;BGC:000000;LBGC:000000;ALC:FFFFFF;LC:FFFFFF;T:CCCCCC;GFNT:CCCCCC;GIMP:CCCCCC;LH:50;LW:258;L:http://www.fourcc.org/images/search_logo.jpg;S:http://;FORID:1;
+                  name=cof> <INPUT type=hidden value=en
+            name=hl></TD></TR></TBODY></TABLE></FORM></TD>
+          <TD>
+            <ADDRESS>Page was last modified on: June 24 2004
+          19:08:15.</ADDRESS></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></BODY></HTML>
