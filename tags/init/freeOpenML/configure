@@ -1,4 +1,0 @@
-#!/bin/sh
-. confiserie/init.sh "$@"
-confiserie/beautifull_make_rules.sh 
-
