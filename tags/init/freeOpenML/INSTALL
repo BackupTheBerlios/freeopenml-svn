@@ -1,0 +1,12 @@
+as usual :
+./configure
+make
+make install
+
+
+you must be sure that the following environnement is correctly set before
+reporting compilation error  :
+
+CC
+CFLAGS
+LDFLAGS
