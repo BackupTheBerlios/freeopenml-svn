@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <title>againstautotools.html</title>
+</head>
+<body>
+<h1>why not using libtool/automake/autoconf/pkgconfig</h1>
+yes I know libtool/automake/autoconf rocks! as long as you don't try
+something special, else you'll run into trouble shortly...... I left
+windows world because of such behaviour... here follow some outoforder
+args<br>
+<br>
+<ul>
+  <li>automake : as long you try only to make things said in info
+pages, it works well, but if you want to do fancy things / debug
+automake output because what you do don't work, you have to learn about
+makefile/make....&nbsp; why learn 2 typo? make is more powerfull and
+learning it make you write small clean Makefile that can easely be
+extended (look at freeOpenML makefiles..... in less than 1 page I can
+perform automatic dependency tracking, library building, custom make
+output message [even colorized ones ^_^] ....)</li>
+  <li>autoconf : same args as above : you'll need to learn autoconf
+typo, sh scripts..... people often do scripts that do nothing not even
+fail on missing header..... <br>
+  </li>
+  <li>automake/autoconf : produce a lot of files that do the same thing</li>
+  <li>autoconf : too slow, fancy autoconf script are hard to debug or
+to read/extend</li>
+  <li>libtool : produce .la file that are text, in those file libtool
+store path,&nbsp; library dependency... (for system unlike GNU one that
+can't track library dependency) but when you try to make crosscompiling
+things, you'll only end seding those file because they use fixed
+paths.....</li>
+  <li>libtool : versionning mechanism isn't logical, a logical one
+should be : <br>
+  </li>
+  <ul>
+    <li>CURRENT:AGE:REVISION</li>
+    <li>source code improvement : REVISION++</li>
+    <li>on interface addition : AGE++, REVISION=0</li>
+    <li>interface removal/change : CURRENT++, AGE=0, REVISION=0</li>
+    <ul>
+      <li>doing so garanties that a program can safely link with
+libraries with same CURRENT, Greater AGE, greater REVISION</li>
+    </ul>
+    <li>and more : this keep the package version scheme usually used
+.... <br>
+    </li>
+  </ul>
+  <li>pkgconfig : same as above.... this is NOT K.I.S.S</li>
+  <ul>
+    <li>don't support environnement variable..... <br>
+    </li>
+  </ul>
+</ul>
+</body>
+</html>
