@@ -1,81 +1,67 @@
 #/***********************************************************************
 #* copyright (c) 2004 MALET Jean-luc aka cityhunter
 #* This program is free software; you can redistribute it and/or modify
-#* it under the terms of version 2.1 of the GNU Lesser General Public
-#* License as published by the Free Software Foundation.
-#*
-#* This program is distributed in the hope that it wou be useful,
-#* but WITHOUT ANY WARRANTY; without even the implied warranty of
-#* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#*
-#* Further, this software is distributed without any warranty that it
-#* is free of the rightful claim of any third person regarding
-#* infringement or the like.  Any license provided herein, whether
-#* implied or otherwise, applies only to this software file.  Patent
-#* licenses, if any, provided herein do not apply to combinations of
-#* this program with other software, or any other product whatsoever.
-#*
-#* You shou have received a copy of the GNU Lesser General Public
-#* License along with this program; if not, write the Free Software
-#* Foundation, Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307,
-#* USA.
-#*
-#************************************************************************/
+#* it under the terms of the artistic license as published in the top source dir of the
+#* package
+#************************************************************************/ 
+
 #general variables
-.PHONY : all lib clean debug 
+.PHONY : all lib clean debug tests
+
 
 #addition to environnement variable, be carefull when nesting subdirs in this makefile
-LDFLAGS+= -lpthread -ldl -lrt
-CFLAGS+= -I../include -Wall -fPIC -Werror-implicit-function-declaration
+LDFLAGS  += -lpthread -ldl -lrt
+CFLAGS   += -Wall -fPIC -Werror-implicit-function-declaration  
+CPPFLAGS += -I../include
 
-#here goes your sources
-lib_sources = mlBeginTransfer.c mlGetCapabilities.c mlGetSystemUST.c mlModules.c
-lib_sources += mlPvValueToString.c mlSendMessage.c mlClose.c mlGetControls.c 
-lib_sources += mlGetVersion.c mlOpen.c mlSelectPipe.c mlSetControls.c
-lib_sources += mlEndTransfer.c mlGetMessageCount.c mlMessageName.c mlPvToString.c
-lib_sources += mlPvParamToString.c mlReceiveMessage.c mlXcodeWork.c register.c
-lib_sources += mlFreeMessage.c mlGetReceiveWaitHandle.c mlMessageQueue.c
-#lib_sources +=  mlPvXXXXFromString.c
+#here goes your sources : the rules are as follow 
+# liblist must contain the names of your libs including the $(SHAREDLIBEXT) (or .so
+# if you're not using automatic library type detection) $(STATICLIBEXT) (or .a)
+# then for each libraries listed here, you must create a variable with the format
+# sources_nomlibwithoutextension which must contain the list of sources (not headers)
+# at this time extension supported are .c .cc .C .cpp more can be added on demand
+SHAREDLIBEXT = .so
 
 VERSION=0.0.0
-#now the targets
-all : libOpenML.so.$(VERSION)
 
-libOpenML.so.$(VERSION) : $(lib_sources:%.c=%.o)
-	rm -f libOpenML*
-	$(LDMESG) $@
-	$(LD) $(LDFLAGS) -shared -Bdynamic -soname $@ -o $@ $^
-	ln -s $@ libOpenML.so
-	$(SUCCESSMSG) $@
+ifdef SHAREDLIBEXT
+liblist += libOpenML.$(VERSION)$(SHAREDLIBEXT)
+all :
+	ln -sf libOpenML.$(VERSION)$(SHAREDLIBEXT) libOpenML$(SHAREDLIBEXT)
+endif
+ifdef STATICLIBEXT
+liblist += libOpenML.$(VERSION)$(STATICLIBEXT)
+all:
+	
+endif
 
+#here goes your sources
+sources_libOpenML.$(VERSION) = mlBeginTransfer.c mlGetCapabilities.c mlGetSystemUST.c
+sources_libOpenML.$(VERSION) += mlModules.c mlPvValueToString.c mlSendMessage.c 
+sources_libOpenML.$(VERSION) += mlClose.c mlGetControls.c mlGetVersion.c mlOpen.c
+sources_libOpenML.$(VERSION) += mlSelectPipe.c mlSetControls.c mlEndTransfer.c
+sources_libOpenML.$(VERSION) += mlGetMessageCount.c mlMessageName.c mlPvToString.c
+sources_libOpenML.$(VERSION) += mlPvParamToString.c mlReceiveMessage.c mlXcodeWork.c
+sources_libOpenML.$(VERSION) += register.c mlFreeMessage.c mlGetReceiveWaitHandle.c
+sources_libOpenML.$(VERSION) += mlMessageQueue.c 
+#sources_libOpenML.$(VERSION) += mlPvXXXXFromString.c
 
 #a special target : it only modify CFLAGS variables before making it the standard way
 debug : CFLAGS+= -g3 -gdwarf-2 -O0
 debug : all
-
+	
 clean : 
 	$(CLEANINGMSG) $(MSGSUBDIR)
-	rm -Rf *.o *.so* .DEP
 
 install :
-	$(INSTALLMSG) $(lib_sources:%.c=%.so) in $(INSTALL_PREFIX)/lib/mlplugins"
+	$(INSTALLMSG) $(liblist) in $(INSTALL_PREFIX)/lib/mlplugins
 	mkdir -p  $(INSTALL_PREFIX)/lib/mlplugins
-	$(INSTALL) -C $(lib_sources:%.c=%.so) $(INSTALL_PREFIX)/lib/mlplugins
+	$(INSTALL) -C $(liblist) $(INSTALL_PREFIX)/lib/mlplugins
 
-
-#this must be last : it defines rules, since make execute the first found rule in case
-#of 'make' this can cause you not having the right behaviour
-
-
-
-#as a gneral rule includ must be last : it defines rules, since make execute the first found rule 
-#in case of 'make' this can cause you not having the right behaviour
-#remember : a Makefile isn't linearly executed....
+#create the dependencies (the - is for avoiding it to be too verbose)
+-include $(TOPSRC_DIR)/$(sources_libOpenML.$(VERSION):%.c=.DEP/%.d)
 export TOPSRC_DIR?=$(PWD)
 include $(TOPSRC_DIR)/Makefile.confiserie
 
-
-#create the dependencies (the - is for avoiding it to be too verbose)
--include $(lib_sources:%.c=.DEP/%.d)
 
 

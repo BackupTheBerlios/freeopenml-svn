@@ -35,7 +35,7 @@ all : plugin
 
 CFLAGS+= $(INCLUDEDIR) -Wall -fPIC -Werror-implicit-function-declaration
 
-plugin : $(lib_test_sources:%.c=../%.so)
+plugin : $(lib_test_sources:%.c=%.so)
 	$(SUCCESSMSG) $(MSGSUBDIR)$@
 
 debug : CFLAGS+= -g3 -gdwarf-2 -O0
@@ -45,26 +45,20 @@ clean :
 	$(CLEANINGMSG) $(MSGSUBDIR)
 	rm -Rf *.o *.so .DEP
 
-
--include $(lib_test_sources:%.c=../.DEP/%.d)
-
-
-#automatic linking
-#~ %.so : %.o
-	#~ echo "LD $@"
-	#~ $(LD)  $(LDFLAGS) $(LIB_DIR) $(LIBS) -Bshareable -o $@ $^
+#this must be last : it defines rules, since make execute the first found rule in case
+#of 'make' this can cause you not having the right behaviour
 
 
-#automatic compilation
-../%.so: %.c
-	$(CCMESG)  $(MSGSUBDIR)$<
-	-rm -f $@
-	$(CC) -shared $(CFLAGS) $(INCLUDEDIR) -o $@ $<
 
-#automatic dependencies generation
-../.DEP/%.d: %.c
-	$(DEPMSG) $(MSGSUBDIR)$<
-	mkdir -p .DEP
-	$(CC) $(INCLUDEDIR) -M $(CPPFLAGS) $< 2>&- > $@.$$$$; \
-	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
-	rm -f $@.$$$$
+#as a gneral rule includ must be last : it defines rules, since make execute the first found rule 
+#in case of 'make' this can cause you not having the right behaviour
+#remember : a Makefile isn't linearly executed....
+export TOPSRC_DIR?=$(PWD)
+include $(TOPSRC_DIR)/Makefile.confiserie
+
+
+#create the dependencies (the - is for avoiding it to be too verbose)
+-include $(lib_test_sources:%.c=.DEP/%.d)
+
+
+

@@ -24,7 +24,6 @@ Makefile.confiserie : ./configure
 debug : all
 
 clean : $(target)
-	rm Makefile.confiserie
 
 install: $(target)
 	$(INSTALLMSG) include in  $(INSTALL_PREFIX)/include"
@@ -48,6 +47,4 @@ export TOPSRC_DIR?=$(PWD)
 include $(TOPSRC_DIR)/Makefile.confiserie
 
 
-#your targets
-$(TOPSRC_DIR)/Makefile.confiserie : ./configure
-	./configure
+
