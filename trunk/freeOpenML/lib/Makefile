@@ -7,44 +7,30 @@
 
 #general variables
 .PHONY : all lib clean debug tests
+all:
 
+#includes (env)
+export TOPSRC_DIR?=..
+include $(TOPSRC_DIR)/Makefile.confiserie
 
 #addition to environnement variable, be carefull when nesting subdirs in this makefile
 LDFLAGS  += -lpthread -ldl -lrt
 CFLAGS   += -Wall -fPIC -Werror-implicit-function-declaration  
 CPPFLAGS += -I../include
 
-#here goes your sources : the rules are as follow 
-# liblist must contain the names of your libs including the $(SHAREDLIBEXT) (or .so
-# if you're not using automatic library type detection) $(STATICLIBEXT) (or .a)
-# then for each libraries listed here, you must create a variable with the format
-# sources_nomlibwithoutextension which must contain the list of sources (not headers)
-# at this time extension supported are .c .cc .C .cpp more can be added on demand
-SHAREDLIBEXT = .so
 
-VERSION=0.0.0
-
-ifdef SHAREDLIBEXT
-liblist += libOpenML.$(VERSION)$(SHAREDLIBEXT)
-all :
-	ln -sf libOpenML.$(VERSION)$(SHAREDLIBEXT) libOpenML$(SHAREDLIBEXT)
-endif
-ifdef STATICLIBEXT
-liblist += libOpenML.$(VERSION)$(STATICLIBEXT)
-all:
-	
-endif
-
+lib_LIBRARIES = libOpenML
+export libOpenML_VERSION="0.0.0"
 #here goes your sources
-sources_libOpenML.$(VERSION) = mlBeginTransfer.c mlGetCapabilities.c mlGetSystemUST.c
-sources_libOpenML.$(VERSION) += mlModules.c mlPvValueToString.c mlSendMessage.c 
-sources_libOpenML.$(VERSION) += mlClose.c mlGetControls.c mlGetVersion.c mlOpen.c
-sources_libOpenML.$(VERSION) += mlSelectPipe.c mlSetControls.c mlEndTransfer.c
-sources_libOpenML.$(VERSION) += mlGetMessageCount.c mlMessageName.c mlPvToString.c
-sources_libOpenML.$(VERSION) += mlPvParamToString.c mlReceiveMessage.c mlXcodeWork.c
-sources_libOpenML.$(VERSION) += register.c mlFreeMessage.c mlGetReceiveWaitHandle.c
-sources_libOpenML.$(VERSION) += mlMessageQueue.c 
-#sources_libOpenML.$(VERSION) += mlPvXXXXFromString.c
+libOpenML_SOURCES = mlBeginTransfer.c mlGetCapabilities.c mlGetSystemUST.c
+libOpenML_SOURCES += mlModules.c mlPvValueToString.c mlSendMessage.c 
+libOpenML_SOURCES += mlClose.c mlGetControls.c mlGetVersion.c mlOpen.c
+libOpenML_SOURCES += mlSelectPipe.c mlSetControls.c mlEndTransfer.c
+libOpenML_SOURCES += mlGetMessageCount.c mlMessageName.c mlPvToString.c
+libOpenML_SOURCES += mlPvParamToString.c mlReceiveMessage.c mlXcodeWork.c
+libOpenML_SOURCES += register.c mlFreeMessage.c mlGetReceiveWaitHandle.c
+libOpenML_SOURCES += mlMessageQueue.c 
+#libOpenML_SOURCES += mlPvXXXXFromString.c
 
 #a special target : it only modify CFLAGS variables before making it the standard way
 debug : CFLAGS+= -g3 -gdwarf-2 -O0
@@ -53,15 +39,9 @@ debug : all
 clean : 
 	$(CLEANINGMSG) $(MSGSUBDIR)
 
-install :
-	$(INSTALLMSG) $(liblist) in $(INSTALL_PREFIX)/lib/mlplugins
-	mkdir -p  $(INSTALL_PREFIX)/lib/mlplugins
-	$(INSTALL) -C $(liblist) $(INSTALL_PREFIX)/lib/mlplugins
-
-#create the dependencies (the - is for avoiding it to be too verbose)
--include $(TOPSRC_DIR)/$(sources_libOpenML.$(VERSION):%.c=.DEP/%.d)
-export TOPSRC_DIR?=$(PWD)
-include $(TOPSRC_DIR)/Makefile.confiserie
+#includes (helpers)
+include ${confiserie}/Makefiles/Makefile.autolib
+include ${confiserie}/C/Makefile.beautifull_rules
 
 
 

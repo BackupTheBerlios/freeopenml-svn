@@ -30,7 +30,7 @@
 			struct mlPipe* pipes;
 			u_int16_t pipes_count;
 			u_int16_t current_pipe;
-			u_int64_t id;					//current ID (system id for system, device  ID... see mlid.h)
+			struct ml_id id;					//current ID (system id for system, device  ID... see mlid.h)
 			int32_t (*mlPvGetCapabilities) ( const u_int64_t id,
 									const u_int64_t paramid, MLpv** capabilities);
 			int32_t (*mlOpen)  				( struct mlID* openid,  MLpv* options);
@@ -47,7 +47,7 @@
 			struct mlID* next;		//to make a simple linked list
 			};
 
-		extern struct mlID* localhost;
+		extern struct mlID* localhost_tree;
 
 		/**
 		 * this function load the plugin into the framework

@@ -19,26 +19,26 @@
 
 	// Image parameters specify how images are stored or how they should
 	// be interpreted by SDK subsystems.
-	#define  ML_IMAGE_BUFFER_POINTER	    ML_PARAM_NAME( ML_CLASS_BUFFER, ML_TYPE_BYTE_POINTER,1)
-	#define  ML_IMAGE_WIDTH_INT32					ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32,     2)
-	#define  ML_IMAGE_HEIGHT_1_INT32			ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32,     3)
-	#define  ML_IMAGE_HEIGHT_2_INT32			ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32,     4)
-	#define  ML_IMAGE_ROW_BYTES_INT32			ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32,     5)
-	#define  ML_IMAGE_SKIP_PIXELS_INT32		ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32,     6)
-	#define  ML_IMAGE_SKIP_ROWS_INT32			ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32,     7)
-	#define  ML_IMAGE_ORIENTATION_INT32		ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32,     8)
-	#define  ML_IMAGE_BUFFER_SIZE_INT32		ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32,     9)
+	#define  ML_IMAGE_BUFFER_POINTER	    MLparam (buffer, byte_pointer,1)
+	#define  ML_IMAGE_WIDTH_INT32					MLparam (image, int32,     2)
+	#define  ML_IMAGE_HEIGHT_1_INT32			MLparam (image, int32,     3)
+	#define  ML_IMAGE_HEIGHT_2_INT32			MLparam (image, int32,     4)
+	#define  ML_IMAGE_ROW_BYTES_INT32			MLparam (image, int32,     5)
+	#define  ML_IMAGE_SKIP_PIXELS_INT32		MLparam (image, int32,     6)
+	#define  ML_IMAGE_SKIP_ROWS_INT32			MLparam (image, int32,     7)
+	#define  ML_IMAGE_ORIENTATION_INT32		MLparam (image, int32,     8)
+	#define  ML_IMAGE_BUFFER_SIZE_INT32		MLparam (image, int32,     9)
 
 	  // Field/frame description
-	#define  ML_IMAGE_TEMPORAL_SAMPLING_INT32  ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32, 10)
-	#define  ML_IMAGE_INTERLEAVE_MODE_INT32    ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32, 11)
-	#define  ML_IMAGE_DOMINANCE_INT32          ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32, 12)
+	#define  ML_IMAGE_TEMPORAL_SAMPLING_INT32  MLparam (image, int32, 10)
+	#define  ML_IMAGE_INTERLEAVE_MODE_INT32    MLparam (image, int32, 11)
+	#define  ML_IMAGE_DOMINANCE_INT32          MLparam (image, int32, 12)
 
 	  // Pixel storage descriptions
-	#define  ML_IMAGE_COMPRESSION_INT32 	ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32, 20)
-	#define  ML_IMAGE_SAMPLING_INT32			ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32, 22)
-	#define  ML_IMAGE_COLORSPACE_INT32		ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32, 23)
-	#define  ML_IMAGE_PACKING_INT32	    	ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32, 24)
+	#define  ML_IMAGE_COMPRESSION_INT32 	MLparam (image, int32, 20)
+	#define  ML_IMAGE_SAMPLING_INT32			MLparam (image, int32, 22)
+	#define  ML_IMAGE_COLORSPACE_INT32		MLparam (image, int32, 23)
+	#define  ML_IMAGE_PACKING_INT32	    	MLparam (image, int32, 24)
 
 	  // Gamma of the stored image (see also ML_JACK_GAMMA_REAL32).
 	  // the difference between the gamma of the input image/jack
@@ -46,32 +46,32 @@
 	  // gamma correction (if any).
 	  // XXX - initial draft implementation of this parameter
 	  // XXX - need detailed definition with equations and default value.
-	#define  ML_IMAGE_GAMMA_REAL32        ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_REAL32, 25)
+	#define  ML_IMAGE_GAMMA_REAL32        MLparam (image, real32, 25)
 
 	  // Desired compression factor, a value of 1 indicates no compression,
 	  // a value of 10 indicates that approximatly 10 compressed buffers
 	  // require the same space as 1 uncompressed buffer.
 	  // The size of the uncompressed buffer depends on image width,
 	  // height, packing and sampling.
-	#define  ML_IMAGE_COMPRESSION_FACTOR_REAL32  ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_REAL32, 33)
+	#define  ML_IMAGE_COMPRESSION_FACTOR_REAL32  MLparam (image, real32, 33)
 
 	  // Describes what happens to alpha when going xxx -> xxx4
-	#define  ML_IMAGE_ALPHA_FILL_INT32	ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32, 40)
+	#define  ML_IMAGE_ALPHA_FILL_INT32	MLparam (image, int32, 40)
 
 	  // Other ancilliary parts of an image
 	  // "Horizontal ANCilliary" height/width/format/buffer pointer
-	#define  ML_HANC_WIDTH_INT32				ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32, 50)
-	#define  ML_HANC_HEIGHT_1_INT32	    ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32, 51)
-	#define  ML_HANC_HEIGHT_2_INT32	    ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32, 52)
-	#define  ML_HANC_FORMAT_INT32				ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32, 53)
-	#define  ML_HANC_BUFFER_POINTER	    ML_PARAM_NAME( ML_CLASS_BUFFER, ML_TYPE_BYTE_POINTER,54)
+	#define  ML_HANC_WIDTH_INT32				MLparam (image, int32, 50)
+	#define  ML_HANC_HEIGHT_1_INT32	    MLparam (image, int32, 51)
+	#define  ML_HANC_HEIGHT_2_INT32	    MLparam (image, int32, 52)
+	#define  ML_HANC_FORMAT_INT32				MLparam (image, int32, 53)
+	#define  ML_HANC_BUFFER_POINTER	    MLparam (buffer, byte_pointer,54)
 
 	  // "Vertical ANCilliary" height/width/format/buffer pointer
-	#define  ML_VANC_WIDTH_INT32				ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32, 60)
-	#define  ML_VANC_HEIGHT_1_INT32	    ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32, 61)
-	#define  ML_VANC_HEIGHT_2_INT32	    ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32, 62)
-	#define  ML_VANC_FORMAT_INT32				ML_PARAM_NAME( ML_CLASS_IMAGE, ML_TYPE_INT32, 63)
-	#define  ML_VANC_BUFFER_POINTER	    ML_PARAM_NAME( ML_CLASS_BUFFER, ML_TYPE_BYTE_POINTER,64)
+	#define  ML_VANC_WIDTH_INT32				MLparam (image, int32, 60)
+	#define  ML_VANC_HEIGHT_1_INT32	    MLparam (image, int32, 61)
+	#define  ML_VANC_HEIGHT_2_INT32	    MLparam (image, int32, 62)
+	#define  ML_VANC_FORMAT_INT32				MLparam (image, int32, 63)
+	#define  ML_VANC_BUFFER_POINTER	    MLparam (buffer, byte_pointer,64)
 
 
 	// For progressive scan images (ML_IMAGE_TEMPORAL_SAMPLING_INT32
@@ -85,17 +85,29 @@
 	// field-based temporal sampling, describes the field dominance.
 
 	//***************ML_IMAGE_DOMINANCE_INT32
-		#define  ML_DOMINANCE_F1 0
-		#define  ML_DOMINANCE_F2 1
+	enum ml_dominance
+		{
+			ML_DOMINANCE_F1,
+			ML_DOMINANCE_F2,
+		};
 	//***************ML_IMAGE_INTERLEAVE_MODE_INT32
-		#define  ML_INTERLEAVE_MODE_INTERLEAVED		0
-		#define  ML_INTERLEAVE_MODE_SINGLE_FIELD	1
+	enum ml_mode
+		{
+		ML_INTERLEAVE_MODE_INTERLEAVED,
+		ML_INTERLEAVE_MODE_SINGLE_FIELD,
+		};
 	//***************ML_IMAGE_ORIENTATION_INT32
-		#define  ML_ORIENTATION_TOP_TO_BOTTOM	0
-		#define  ML_ORIENTATION_BOTTOM_TO_TOP	1
+	enum ml_orientation
+		{
+			ML_ORIENTATION_TOP_TO_BOTTOM,
+			ML_ORIENTATION_BOTTOM_TO_TOP,
+		};
 	//***************ML_IMAGE_TEMPORAL_SAMPLING_INT32
-		#define  ML_TEMPORAL_SAMPLING_FIELD_BASED	0
-		#define  ML_TEMPORAL_SAMPLING_PROGRESSIVE	1
+	enum ml_temporal_sampling
+		{
+			ML_TEMPORAL_SAMPLING_FIELD_BASED,
+			ML_TEMPORAL_SAMPLING_PROGRESSIVE,
+		};
 	//***************ML_IMAGE_COMPRESSION_INT32
 	#include <fourcc.h>
 	#define  ML_COMPRESSION_UNCOMPRESSED	FOURCC_raw
@@ -140,17 +152,20 @@
 		#define ML_GET_COLORSPACE_REPRESENTATION(cs) ((cs&ML_REPRESENTATION_MASK)>>ML_REPRESENTATION_SHIFT)
 
 	//************************** ML_IMAGE_SAMPLING_INT32
-		#define ML_SAMPLING_4444        0x004444
-		#define ML_SAMPLING_4224        0x004224
-		#define ML_SAMPLING_444         0x004440
-		#define ML_SAMPLING_422         0x004220
-		#define ML_SAMPLING_420_MPEG1   0x104200
-		#define ML_SAMPLING_420_MPEG2   0x204200
-		#define ML_SAMPLING_420_DVC625  0x304200
-		#define ML_SAMPLING_411_DVC     0x404110
-		#define ML_SAMPLING_4004        0x004004
-		#define ML_SAMPLING_400         0x004000
-		#define ML_SAMPLING_0004        0x000004   // linear alpha
+	enum ml_image_sampling 
+		{
+			ML_SAMPLING_4444       =0x004444,
+			ML_SAMPLING_4224       =0x004224,
+			ML_SAMPLING_444        =0x004440,
+			ML_SAMPLING_422        =0x004220,
+			ML_SAMPLING_420_MPEG1  =0x104200,
+			ML_SAMPLING_420_MPEG2  =0x204200,
+			ML_SAMPLING_420_DVC625 =0x304200,
+			ML_SAMPLING_411_DVC    =0x404110,
+			ML_SAMPLING_4004       =0x004004,
+			ML_SAMPLING_400        =0x004000,
+			ML_SAMPLING_0004       =0x000004,   // linear alpha
+		};
 		// Some useful macros for checking sampling
 		#define ML_IS_SAMPLING_422x(s) (((s)&0x00fff0)==0x004220)
 		#define ML_IS_SAMPLING_444x(s) (((s)&0x00fff0)==0x004440)
@@ -269,13 +284,19 @@
 
 	// Currently Supported Horizontal and Vertical Ancilliary Data Formats:
 	//************************** ML_HANC_FORMAT_INT32
-	#define ML_HANC_FORMAT_RAW 					1
-	#define ML_HANC_FORMAT_PACKED_272M	2
-	#define ML_HANC_FORMAT_PACKED_299M	3
+		enum ml_hanc_format
+			{
+				ML_HANC_FORMAT_RAW,
+				ML_HANC_FORMAT_PACKED_272M,
+				ML_HANC_FORMAT_PACKED_299M,
+			};
 
 
 	//************************** ML_VANC_FORMAT_INT32
-	#define ML_VANC_FORMAT_RAW
+	enum ml_vanc_format
+		{
+			ML_VANC_FORMAT_RAW,
+		};
 
 
 	// Predefined image sizes (in bytes)
@@ -284,12 +305,15 @@
 	// note that suffixes match "ML_COMPRESSION" suffixes.
 
 	//************************** enum mlImageSizeDefinitions {
-	#define ML_IMAGE_SIZE_DV_625		144000
-	#define ML_IMAGE_SIZE_DV_525		120000
-	#define ML_IMAGE_SIZE_DVCPRO_625	144000
-	#define ML_IMAGE_SIZE_DVCPRO_525	120000
-	#define ML_IMAGE_SIZE_DVCPRO50_625	288000
-	#define ML_IMAGE_SIZE_DVCPRO50_525	240000
+	enum ml_image_size
+		{
+			ML_IMAGE_SIZE_DV_625		=144000,
+      ML_IMAGE_SIZE_DV_525		=120000,
+			ML_IMAGE_SIZE_DVCPRO_625	=144000,
+	    ML_IMAGE_SIZE_DVCPRO_525	=120000,
+	    ML_IMAGE_SIZE_DVCPRO50_625	=288000,
+	    ML_IMAGE_SIZE_DVCPRO50_525	=240000,
+		};
 
 	#ifdef __cplusplus
 	}

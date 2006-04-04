@@ -1,50 +1,66 @@
-#/***********************************************************************
-#* copyright (c) 2004 MALET Jean-luc aka cityhunter
-#* This program is free software; you can redistribute it and/or modify
-#* it under the terms of the artistic license as published in the top 
-#* source dir of the package
-#************************************************************************/
+# (C) 2005-2005 MALET Jean-Luc aka cityhunter
+#this file is provided under the thermes of the BSD licence, you can use it, modify it
+#include it into your commercial software as you want
 
-.PHONY : all clean debug install $(target)
+# as a general rule to avoid issues
+#    make variables first
+#    make rules following (first appearing rule is the default when issuing 'make')
+#    includes last
 
+
+.PHONY : all clean debug install distclean
+all :
+
+MSGSUBDIR?=.
+#includes
+export TOPSRC_DIR?=$(PWD)
+include ${TOPSRC_DIR}/Makefile.confiserie
 
 #prevent commands to be outputed,  run make -n to see exactly what is performed
 #or comment this during developement
+ifndef DEBUG
 export MAKEFLAGS+=s
+endif
 
 #your subdirs
-target = lib drivers tests applications
+subdirs = lib 
+#drivers tests applications
 
-all :  $(target) 
+all :  $(subdirs) runtest
 
-#your targets
+#your subdirs
 Makefile.confiserie : ./configure
 	./configure
-	
+
+all clean debug install  : $(subdirs)
 debug : all
 
-clean : $(target)
+install : ${subdirs}
 
-install: $(target)
-	$(INSTALLMSG) include in  $(INSTALL_PREFIX)/include"
-	mkdir -p $(INSTALL_PREFIX)/include/OpenML
-	$(INSTALL) -C include/OpenML/* $(INSTALL_PREFIX)/include/OpenML
-	$(INSTALL) -C include/fourcc.h $(INSTALL_PREFIX)/include
+distclean :
+	rm -f  Makefile.confiserie
+	rm -f .config.cache
 
-#special rule :: with nothing that follow tells make to rebuild the target everytime
-#this rules runs make on the subtree
-$(target) ::
-	$(MAKE) $(MAKECMDGOALS) -C $@ MSGSUBDIR=$@/
+# special rule :: with nothing that follow tells make to rebuild the subdirs everytime
+# this rules runs make on the subtree
+
+$(subdirs) ::
+	echo ${PWD}/$@/
+	test -e $@ || mkdir -p $@
+	test -e $@/Makefile || cp ${TOPSRC_DIR}/${MSGSUBDIR}/$@/Makefile $@/Makefile
+	$(MAKE) $(MAKECMDGOALS) -C $@ MSGSUBDIR=${MSGSUBDIR}/$@ 
+	echo ${PWD}
+
+
 
 runtest :
-	./test.sh 2>/dev/null
+	echo no tests available
+	#./test.sh 2>/dev/null
+
+install :
+	echo "[ installing ] ftp in /app"
+	cp -R ftp /app
+	cp -R etc/init.d/* /etc/init.d
 
 
-#as a gneral rule includ must be last : it defines rules, since make execute the first found rule 
-#in case of 'make' this can cause you not having the right behaviour
-#remember : a Makefile isn't linearly executed....
-export TOPSRC_DIR?=$(PWD)
-include $(TOPSRC_DIR)/Makefile.confiserie
-
-
-
+include ${confiserie}/Makefiles/Makefile.tags

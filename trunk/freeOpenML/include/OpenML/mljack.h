@@ -26,29 +26,35 @@
 	// See also the subsystem-independent capabilities defined in mlparam.h
 	//--------------------------------------------------------------------------
 
-	#define ML_JACK_TYPE_INT32	    			ML_PARAM_NAME( ML_CLASS_JACK, ML_TYPE_INT32,0)
-	#define ML_JACK_DIRECTION_INT32   		ML_PARAM_NAME( ML_CLASS_JACK, ML_TYPE_INT32,1)
-	#define ML_JACK_COMPONENT_SIZE_INT32 	ML_PARAM_NAME( ML_CLASS_JACK, ML_TYPE_INT32,2)
+	#define ML_JACK_TYPE_INT32	    			MLparam (jack, int32, 0)
+	#define ML_JACK_DIRECTION_INT32   		MLparam (jack, int32, 1)
+	#define ML_JACK_COMPONENT_SIZE_INT32 	MLparam (jack, int32, 2)
 	#define ML_JACK_FEATURES_BYTE_ARRAY 	ML_FEATURES
-	#define ML_JACK_INTERNAL_ID		    		ML_PARAM_NAME( ML_CLASS_JACK, ML_TYPE_INT32,3)
+	#define ML_JACK_INTERNAL_ID		    		MLparam (jack, int32, 3)
 
 	// ML_JACK_TYPE enumerated values
-	#define ML_JACK_TYPE_COMPOSITE		1
-	#define ML_JACK_TYPE_SVIDEO				2
-	#define ML_JACK_TYPE_SDI					3
-	#define ML_JACK_TYPE_DUALLINK			4
-	#define ML_JACK_TYPE_SYNC					5
-	#define ML_JACK_TYPE_GENLOCK			6 // added in 2.0
-	#define ML_JACK_TYPE_GPI					7 // added in 2.0
-	#define ML_JACK_TYPE_SERIAL				8 // added in 2.0
-	#define ML_JACK_TYPE_ANALOG_AUDIO	9 // added in 2.0
-	#define ML_JACK_TYPE_AES					10 // added in 2.0
-	#define ML_JACK_TYPE_ADAT					11 // added in 2.0
+	enum ml_jack_type
+		{
+			ML_JACK_TYPE_COMPOSITE,
+			ML_JACK_TYPE_SVIDEO,
+			ML_JACK_TYPE_SDI,
+			ML_JACK_TYPE_DUALLINK,
+			ML_JACK_TYPE_SYNC,
+			ML_JACK_TYPE_GENLOCK, // added in 2.0
+			ML_JACK_TYPE_GPI,     // added in 2.0
+			ML_JACK_TYPE_SERIAL,  // added in 2.0
+			ML_JACK_TYPE_ANALOG_AUDIO, // added in 2.0
+			ML_JACK_TYPE_AES,     // added in 2.0
+			ML_JACK_TYPE_ADAT,    // added in 2.0
+		};
 
 
 	// ML_JACK_DIRECTION enumerated values
-	#define ML_DIRECTION_IN		0
-	#define ML_DIRECTION_OUT	1
+	enum ml_direction
+		{
+			ML_DIRECTION_IN,
+			ML_DIRECTION_OUT,
+		};
 
 
 	#ifdef __cplusplus

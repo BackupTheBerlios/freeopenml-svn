@@ -31,16 +31,16 @@
 	#define ML_XCODE_DST_PIPE ((int64_t)0x8 )
 
 
-	#define ML_XCODE_ENGINE_TYPE_INT32      	  ML_PARAM_NAME( ML_CLASS_XCODE, ML_TYPE_INT32,				0)
-	#define ML_XCODE_IMPLEMENTATION_TYPE_INT32	ML_PARAM_NAME( ML_CLASS_XCODE, ML_TYPE_INT32,				1)
-	#define ML_XCODE_PIXEL_LINE_ALIGNMENT_INT32	ML_PARAM_NAME( ML_CLASS_XCODE, ML_TYPE_INT32,				2)
+	#define ML_XCODE_ENGINE_TYPE_INT32      	  MLparam (xcode, int32,				0)
+	#define ML_XCODE_IMPLEMENTATION_TYPE_INT32	MLparam (xcode, int32,				1)
+	#define ML_XCODE_PIXEL_LINE_ALIGNMENT_INT32	MLparam (xcode, int32,				2)
 	#define ML_XCODE_BUFFER_ALIGNMENT_INT32			ML_PATH_BUFFER_ALIGNMENT_INT32
-	#define ML_XCODE_EXTENSIONS_BYTE_ARRAY   	 	ML_PARAM_NAME( ML_CLASS_XCODE, ML_TYPE_BYTE_ARRAY, 	3)
-	#define ML_XCODE_SRC_COUNT             			ML_PARAM_NAME( ML_CLASS_XCODE, ML_TYPE_INT64_ARRAY, 6)
-	#define ML_XCODE_DEST_COUNT            			ML_PARAM_NAME( ML_CLASS_XCODE, ML_TYPE_INT64_ARRAY, 7)
-	#define ML_PIPE_TYPE_INT32 									ML_PARAM_NAME( ML_CLASS_XCODE, ML_TYPE_INT32, 			8)
-	#define ML_XCODE_SPATIAL_QUALITY_REAL32     ML_PARAM_NAME( ML_CLASS_XCODE, ML_TYPE_REAL32,      9)
-	#define ML_XCODE_BITRATE_INT32							ML_PARAM_NAME( ML_CLASS_XCODE, ML_TYPE_INT32,				10)
+	#define ML_XCODE_EXTENSIONS_BYTE_ARRAY   	 	MLparam (xcode, byte_array, 	3)
+	#define ML_XCODE_SRC_COUNT             			MLparam (xcode, int64_array, 6)
+	#define ML_XCODE_DEST_COUNT            			MLparam (xcode, int64_array, 7)
+	#define ML_PIPE_TYPE_INT32 									MLparam (xcode, int32, 			8)
+	#define ML_XCODE_SPATIAL_QUALITY_REAL32     MLparam (xcode, real32,      9)
+	#define ML_XCODE_BITRATE_INT32							MLparam (xcode, int32,				10)
 	#define ML_XCODE_FEATURES										ML_FEATURES
 
 	enum __pipe_type {
@@ -55,16 +55,22 @@
 
 
 	// ML_XCODE_IMPLEMENTATION_TYPE_INT32 enumerated values
-	#define ML_XCODE_IMPLEMENTATION_TYPE_SW 0
-	#define ML_XCODE_IMPLEMENTATION_TYPE_HW 1
+	enum ml_xcode_imp {
+			ML_XCODE_IMPLEMENTATION_TYPE_SW,
+			ML_XCODE_IMPLEMENTATION_TYPE_HW,
+	};
 
 
 	// ML_XCODE_MODE_INT32 enumerated values
-	#define ML_XCODE_MODE_SYNCHRONOUS		0
-	#define ML_XCODE_MODE_ASYNCHRONOUS	1
+	enum ml_xcode_mode {
+			ML_XCODE_MODE_SYNCHRONOUS,
+			ML_XCODE_MODE_ASYNCHRONOUS,
+	};
 
 	// ML_XCODE_ENGINE_INT32 enumerated values
-	#define ML_XCODE_ENGINE_TYPE_NULL   1
+	enum ml_xcode_engine {
+			ML_XCODE_ENGINE_TYPE_NULL,
+	};
 
 
 

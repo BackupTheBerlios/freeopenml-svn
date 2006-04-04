@@ -1,19 +1,25 @@
 #!/bin/sh
-export BUILD_MAKE_INC=Makefile.confiserie
-export BUILD_CONFIG_H=config.h
+progname=${0/*\//}
+confiserie=${0/\/$progname/}/confiserie
 
-if echo $0 | grep -q "^/"; then
-	export confiserie=$(echo $0 | awk '{gsub("/[^/]*$","/confiserie"); printf("%s\n",$0);}')
-else
-	export confiserie=$(echo $PWD/$0 | awk '{gsub("/[^/]*$","/confiserie"); printf("%s\n",$0);}')
-fi
+clean_on_sig() {
+	rm -f $MAKEFILE
+ #	.config.cache.new
+	return 1
+ }
 
+MAKEFILE=Makefile.confiserie
 
-. $confiserie/init.sh "$@" &&
-($confiserie/beautifull_make_rules.sh &&
-$confiserie/test_cc.sh &&
-$confiserie/test_install.sh &&
-$confiserie/autolib_make_rules.sh  &&
-$confiserie/test_compile_c.sh $confiserie/OpenMLDep.c 
-) ||clean_on_sig
+trap clean_on_sig 2 15                   &&
+. ${confiserie}/init.sh "$@" > ${MAKEFILE}&&
+{
+include ${confiserie}/C/Makefile.beautifull_rules &&
+include ${confiserie}/Makefiles/Makefile.autolib &&
+include ${confiserie}/Makefiles/Makefile.tags &&
+
+. ${confiserie}/C/test_cc.sh >> ${MAKEFILE}&&
+. ${confiserie}/C/test_shared_static.sh >> ${MAKEFILE} &&
+. ${confiserie}/C/test_compile_c.sh ${confiserie}/OpenMLDep.c 
+} ||clean_on_sig &&
+finish_confiserie 
 

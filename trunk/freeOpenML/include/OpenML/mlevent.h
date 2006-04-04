@@ -23,8 +23,11 @@
 	* not read them fast enough.  It is not maskable (except indirectly,
 	* by not enabling any events).
 	*/
-	#define ML_EVENT_QUEUE ML_PARAM_NAME( ML_CLASS_EVENT, ML_TYPE_INT32,  2)
-	#define ML_EVENT_QUEUE_OVERFLOW      1
+	#define ML_EVENT_QUEUE   MLparam (event, int32,  2)
+	#define ML_EVENT_DEVICE	 MLparam (event, int32,  3)
+	#define ML_EVENT_VIDEO	 MLparam (event, int32,  4)
+	#define ML_EVENT_XCODE	 MLparam (event, int32,  5)
+	#define ML_EVENT_AUDIO	 MLparam (event, int32,  6)
 
 	/*
 	* The following event messages are generated spontaneously by devices.
@@ -32,26 +35,26 @@
 	* Most devices will only support a subset of all the possible events.
 	* To select/query events use the DEVICE_EVENTS parameter.
 	*/
+	enum ml_event
+		{
+			ML_EVENT_DEVICE_INFO,
+			ML_EVENT_DEVICE_ERROR,
+			ML_EVENT_DEVICE_UNAVAILABLE,
 
-	#define ML_EVENT_DEVICE			ML_PARAM_NAME( ML_CLASS_EVENT, ML_TYPE_INT32,  3)
-	#define ML_EVENT_DEVICE_INFO        		  	0
-	#define ML_EVENT_DEVICE_ERROR								1
-	#define ML_EVENT_DEVICE_UNAVAILABLE					2
+			ML_EVENT_VIDEO_SEQUENCE_LOST,
+			ML_EVENT_VIDEO_SYNC_GAINED,
+			ML_EVENT_VIDEO_SYNC_LOST,
+			ML_EVENT_VIDEO_VERTICAL_RETRACE,
 
-	#define ML_EVENT_VIDEO			ML_PARAM_NAME( ML_CLASS_EVENT, ML_TYPE_INT32,  4)
-	#define ML_EVENT_VIDEO_SEQUENCE_LOST   			0
-	#define ML_EVENT_VIDEO_SYNC_GAINED					1
-	#define ML_EVENT_VIDEO_SYNC_LOST						2
-	#define ML_EVENT_VIDEO_VERTICAL_RETRACE			3
+			ML_EVENT_XCODE_FAILED,
 
-	#define ML_EVENT_XCODE			ML_PARAM_NAME( ML_CLASS_EVENT, ML_TYPE_INT32,  5)
-	#define ML_EVENT_XCODE_FAILED          			0
+			ML_EVENT_AUDIO_SEQUENCE_LOST,
+			ML_EVENT_AUDIO_SAMPLE_RATE_CHANGED,
 
-	#define ML_EVENT_AUDIO			ML_PARAM_NAME( ML_CLASS_EVENT, ML_TYPE_INT32,  6)
-	#define ML_EVENT_AUDIO_SEQUENCE_LOST   			0
-	#define ML_EVENT_AUDIO_SAMPLE_RATE_CHANGED	1
+			ML_EVENT_QUEUE_OVERFLOW,
+		};
 
-
+	
 	#ifdef __cplusplus
 	}
 	#endif

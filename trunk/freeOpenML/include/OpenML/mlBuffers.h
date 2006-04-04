@@ -16,7 +16,7 @@
 	#include <unistd.h>
 	#include <semaphore.h>
 
-	struct buffer {
+	struct sbuffer {
 		sem_t sem;
 		u_int8_t data;
 		};
