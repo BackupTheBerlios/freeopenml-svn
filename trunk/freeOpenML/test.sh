@@ -1,4 +1,4 @@
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/lib:$PWD/drivers
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/lib:$PWD/drivers:$PWD/drivers/tests
 export ML_PLUGINS_PATH=$PWD/drivers
 
 

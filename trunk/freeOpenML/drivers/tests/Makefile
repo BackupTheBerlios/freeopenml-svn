@@ -22,43 +22,49 @@
 #************************************************************************/
 .PHONY : all lib clean debug
 
-lib_test_sources = mlplugin-failed1.c mlplugin-failed2.c mlplugin-failed3.c
-lib_test_sources += mlplugin-failed4.c mlplugin-failed5.c mlplugin-failed6.c
-lib_test_sources += mlplugin-failed7.c mlplugin-failed8.c mlplugin-failed9.c
-
-
-LIB_DIR:=
-LIBS:= -lpthread
-INCLUDEDIR:= -I../../include
-
-all : plugin
-
-CFLAGS+= $(INCLUDEDIR) -Wall -fPIC -Werror-implicit-function-declaration
-
-plugin : $(lib_test_sources:%.c=%.so)
-	$(SUCCESSMSG) $(MSGSUBDIR)$@
-
-debug : CFLAGS+= -g3 -gdwarf-2 -O0
-debug : plugin
-
-clean :
-	$(CLEANINGMSG) $(MSGSUBDIR)
-	rm -Rf *.o *.so .DEP
-
-#this must be last : it defines rules, since make execute the first found rule in case
-#of 'make' this can cause you not having the right behaviour
-
-
-
-#as a gneral rule includ must be last : it defines rules, since make execute the first found rule 
-#in case of 'make' this can cause you not having the right behaviour
-#remember : a Makefile isn't linearly executed....
-export TOPSRC_DIR?=$(PWD)
+#load configuration
+export TOPSRC_DIR?=../..
 include $(TOPSRC_DIR)/Makefile.confiserie
 
+LDFLAGS+= -lpthread
+CFLAGS+= -I../../include -Wall -fPIC -Werror-implicit-function-declaration
 
-#create the dependencies (the - is for avoiding it to be too verbose)
--include $(lib_test_sources:%.c=.DEP/%.d)
+noinst_so_LIBRARIES += mlplugin-failed1 mlplugin-failed2 mlplugin-failed3
+noinst_so_LIBRARIES += mlplugin-failed4 mlplugin-failed5 mlplugin-failed6
+noinst_so_LIBRARIES += mlplugin-failed7 mlplugin-failed8 mlplugin-failed9
 
+mlplugin_failed1_SOURCES = mlplugin-failed1.c
+mlplugin_failed1_VERSION = 0
+
+mlplugin_failed2_SOURCES = mlplugin-failed2.c
+mlplugin_failed2_VERSION = 0
+
+mlplugin_failed3_SOURCES = mlplugin-failed3.c
+mlplugin_failed3_VERSION = 0
+
+mlplugin_failed4_SOURCES = mlplugin-failed4.c
+mlplugin_failed4_VERSION = 0
+
+mlplugin_failed5_SOURCES = mlplugin-failed5.c
+mlplugin_failed5_VERSION = 0
+
+mlplugin_failed6_SOURCES = mlplugin-failed6.c
+mlplugin_failed6_VERSION = 0
+
+mlplugin_failed7_SOURCES = mlplugin-failed7.c
+mlplugin_failed7_VERSION = 0
+
+mlplugin_failed8_SOURCES = mlplugin-failed8.c
+mlplugin_failed8_VERSION = 0
+
+mlplugin_failed9_SOURCES = mlplugin-failed9.c
+mlplugin_failed9_VERSION = 0
+
+debug : CFLAGS+= -g3 -gdwarf-2 -O0
+debug : all
+
+#load helpers makefiles
+include ${confiserie}/Makefiles/Makefile.autolib
+include ${confiserie}/C/Makefile.beautifull_rules
 
 

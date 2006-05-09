@@ -15,7 +15,7 @@
 #include <errno.h>
 #include <stdlib.h>
 
-char success[]="mlforward.so";
+char success[]="mlforward-0.0.0.so";
 
 MLpv message []={
 	{

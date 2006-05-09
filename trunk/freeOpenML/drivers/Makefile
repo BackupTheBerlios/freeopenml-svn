@@ -7,18 +7,24 @@
 #general variables
 .PHONY : all lib clean debug tests
 
+#load configuration
+export TOPSRC_DIR?=..
+include $(TOPSRC_DIR)/Makefile.confiserie
+
 #addition to environnement variable, be carefull when nesting subdirs in this makefile
 LDFLAGS+= -lpthread
 CFLAGS+= -I../include -Wall -fPIC -Werror-implicit-function-declaration
 
 #here goes your sources
-lib_sources = mlforward.c mlRotate.c
+lib_LIBRARIES += mlforward mlRotate
 
-#now the targets
-all : plugin
+mlforward_VERSION = 0.0.0
+mlforward_SOURCES = mlforward.c
 
-plugin : $(lib_sources:%.c=%.so) tests
-	$(SUCCESSMSG) $@
+mlRotate_VERSION = 0.0.0
+mlRotate_SOURCES = mlRotate.c
+
+all : tests
 
 #a nesting : invoques make on the subdir
 tests :
@@ -28,26 +34,11 @@ tests :
 debug : CFLAGS+= -g3 -gdwarf-2 -O0
 debug : all
 
-clean : tests
-	$(CLEANINGMSG) $(MSGSUBDIR)
-	rm -Rf *.o *.so .DEP
-
-install :
-	$(INSTALLMSG) $(lib_sources:%.c=%.so) in $(INSTALL_PREFIX)/lib/mlplugins"
-	mkdir -p  $(INSTALL_PREFIX)/lib/mlplugins
-	$(INSTALL) -C $(lib_sources:%.c=%.so) $(INSTALL_PREFIX)/lib/mlplugins
-
 
 #as a gneral rule includ must be last : it defines rules, since make execute the first found rule 
 #in case of 'make' this can cause you not having the right behaviour
 #remember : a Makefile isn't linearly executed....
-export TOPSRC_DIR?=$(PWD)
-include $(TOPSRC_DIR)/Makefile.confiserie
-
-
-#create the dependencies (the - is for avoiding it to be too verbose)
--include $(lib_sources:%.c=.DEP/%.d)
-
-
+include ${confiserie}/Makefiles/Makefile.autolib
+include ${confiserie}/C/Makefile.beautifull_rules
 
 

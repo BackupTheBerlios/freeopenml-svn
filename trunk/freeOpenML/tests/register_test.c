@@ -12,20 +12,20 @@
 #include "OpenML/OpenML.h"
 #include <unistd.h>
 
-char plugin[][20]={
-	"mlplugin-failed1.so",
-	"mlplugin-failed2.so",
-	"mlplugin-failed3.so",
-	"mlplugin-failed4.so",
-	"mlplugin-failed5.so",
-	"mlplugin-failed6.so",
-	"mlplugin-failed7.so",
-	"mlplugin-failed8.so",
-	"mlplugin-failed9.so",
-	"mlforward.so",
-	"mlforward.so",
-	"mlforward.so",
-	"mlforward.so",
+char plugin[][120]={
+	"mlplugin-failed1-0.so",
+	"mlplugin-failed2-0.so",
+	"mlplugin-failed3-0.so",
+	"mlplugin-failed4-0.so",
+	"mlplugin-failed5-0.so",
+	"mlplugin-failed6-0.so",
+	"mlplugin-failed7-0.so",
+	"mlplugin-failed8-0.so",
+	"mlplugin-failed9-0.so",
+	"mlforward-0.0.0.so",
+	"mlforward-0.0.0.so",
+	"mlforward-0.0.0.so",
+	"mlforward-0.0.0.so",
 };
 
 
@@ -37,7 +37,10 @@ int main (int argc, char** argv)
 	for (i=0; i<9; i++)
 		{
 			if (0==mlPluginLoad(plugin[i],NULL)) //no error O_O
-				return 1;
+			  {
+			    fprintf (stderr, "step %d\n", i);
+			    return 1;
+			  }
 		}
 	if (mlPluginLoad(plugin[9],&id[0])) //not ok O_O
 		return 5;
@@ -49,16 +52,28 @@ int main (int argc, char** argv)
 	for (i=0; i<3; i++)
 		{
 			if (0==mlPluginLoad(plugin[9],&id[i+1])) //no error O_O
-				return 8;
+			  {
+			    fprintf (stderr, "step %d\n", i);
+			    return 8;
+			  }
 		}
 	for (i=0; i<2; i++)
 		{
 			if (mlPluginLoad(plugin[10+i],&id[i+1]))
-				return 9;
+			  {
+			    fprintf (stderr, "step %d\n", i);
+			    return 9;
+			  }
 			if (SYSTEM_ID(id[i+1]) != ML_SYSTEM_LOCALHOST )
-				return 10;
+			  {
+			    fprintf (stderr, "step %d\n", i);
+			    return 10;
+			  }
 			if (DEVICE_ID(id[i+1]) >> 32 != i+1 )
-				return 11;
+			  {
+			    fprintf (stderr, "step %d\n", i);
+			    return 11;
+			  }
 		}
 	if (0 == mlDeviceUnRegister(3) ) return 12;
 	if (0 != mlDeviceUnRegister(id[2]) ) return 13;

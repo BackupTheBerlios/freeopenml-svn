@@ -21,7 +21,7 @@ int main (int argc, char** argv)
 	MLpv* capabilities;
 	MLpv* current;
 	int i;
-	if (mlPluginLoad("mlforward.so", &id)) return 1;
+	if (mlPluginLoad("mlforward-0.0.0.so", &id)) return 1;
 
 	if ( 0 == mlGetCapabilities( 3, &capabilities) ) return 2;
 	if ( 0 != mlGetCapabilities(ML_SYSTEM_LOCALHOST, &capabilities) ) return 3;

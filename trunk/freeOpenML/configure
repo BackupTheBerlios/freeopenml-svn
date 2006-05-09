@@ -1,25 +1,66 @@
 #!/bin/sh
+<<<<<<< .mine
+export BUILD_MAKE_INC=Makefile.confiserie
+#!/bin/sh
 progname=${0/*\//}
 confiserie=${0/\/$progname/}/confiserie
+=======
+progname=${0/*\//}
+confiserie=${0/\/$progname/}/confiserie
+>>>>>>> .r14
 
+<<<<<<< .mine
+custom_clean_on_sig() {
+	rm -f Makefile.confiserie
+}
+=======
 clean_on_sig() {
 	rm -f $MAKEFILE
  #	.config.cache.new
 	return 1
  }
+>>>>>>> .r14
 
+<<<<<<< .mine
+#do some cleaning before beginning
+custom_clean_on_sig
+. ${confiserie}/init.sh "$@" > Makefile.confiserie &&
+(
+#helper makefiles that we use
+include ${confiserie}/C/Makefile.beautifull_rules &&
+include ${confiserie}/Makefiles/Makefile.autolib  &&
+include ${confiserie}/C/Makefile.autoapp          &&
+include ${confiserie}/C/autopcflags               &&
+=======
 MAKEFILE=Makefile.confiserie
+>>>>>>> .r14
 
+<<<<<<< .mine
+export CPPFLAGS="${CPPFLAGS} -I ${confiserie}/../include"     &&
+export LDFLAGS="${LDFLAGS} -L ${PWD}/lib"             &&
+=======
 trap clean_on_sig 2 15                   &&
 . ${confiserie}/init.sh "$@" > ${MAKEFILE}&&
 {
 include ${confiserie}/C/Makefile.beautifull_rules &&
 include ${confiserie}/Makefiles/Makefile.autolib &&
 include ${confiserie}/Makefiles/Makefile.tags &&
+>>>>>>> .r14
 
+<<<<<<< .mine
+. ${confiserie}/C/test_cc.sh                          &&
+. ${confiserie}/C/test_shared_static.sh               &&
+. ${confiserie}/tools/test_install.sh                 &&
+. ${confiserie}/C/test_compile_c.sh ${confiserie}/OpenMLDep.c 
+) >> Makefile.confiserie ||clean_on_sig 
+
+finish_confiserie
+
+=======
 . ${confiserie}/C/test_cc.sh >> ${MAKEFILE}&&
 . ${confiserie}/C/test_shared_static.sh >> ${MAKEFILE} &&
 . ${confiserie}/C/test_compile_c.sh ${confiserie}/OpenMLDep.c 
 } ||clean_on_sig &&
 finish_confiserie 
 
+>>>>>>> .r14

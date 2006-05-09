@@ -12,7 +12,7 @@
 #include "OpenML/OpenML.h"
 #include <unistd.h>
 
-char success[]="mlforward.so";
+char success[]="mlforward-0.0.0.so";
 
 int main (int argc, char** argv)
 {

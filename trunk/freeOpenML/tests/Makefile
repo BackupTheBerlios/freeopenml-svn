@@ -25,51 +25,41 @@
 
 #general variables
 .PHONY : all test clean debug
+all :
 
+#load configuration file
+export TOPSRC_DIR?=..
+include $(TOPSRC_DIR)/Makefile.confiserie
 
 #addition to environnement variable, be carefull when nesting subdirs in this makefile
-LDFLAGS+=-L../lib -lOpenML
+LDFLAGS+=-L../lib -lOpenML -ldl
 CFLAGS+= -I../include -Wall -Werror-implicit-function-declaration
 
-#here goes your sources
-test_sources = todo.c register_test.c version_test.c send_receive_test.c
-test_sources += open_close_test.c GetCapabilities_test.c MessageQueue_test.c
-test_sources += streamon_test.c mlInit_test.c streamon_test2.c streamoff_test.c
-test_sources += messagecount_test.c
 
-test_prog = $(test_sources:%.c=%)
+noinst_PROGRAMS = todo register_test version_test send_receive_test
+noinst_PROGRAMS+= open_close_test GetCapabilities_test MessageQueue_test
+noinst_PROGRAMS+= streamon_test mlInit_test streamon_test2 streamoff_test
+noinst_PROGRAMS+= messagecount_test
 
-
-#now the target
-all : test
-	$(SUCCESSMSG) $<
-
-test : $(test_prog) Makefile
+todo_SOURCES                 = todo.c
+register_test_SOURCES        = register_test.c
+version_test_SOURCES         = version_test.c
+send_receive_test_SOURCES    = send_receive_test.c
+open_close_test_SOURCES      = open_close_test.c
+GetCapabilities_test_SOURCES = GetCapabilities_test.c
+MessageQueue_test_SOURCES    = MessageQueue_test.c
+streamon_test_SOURCES        = streamon_test.c
+mlInit_test_SOURCES          = mlInit_test.c
+streamon_test2_SOURCES       = streamon_test2.c
+streamoff_test_SOURCES       = streamoff_test.c
+messagecount_test_SOURCES    = messagecount_test.c
 
 #a special target : it only modify CFLAGS variables before making it the standard way
 debug : CFLAGS+= -g3 -gdwarf-2 -O0
 debug : all
 
-#see info make for automatic variable substitution
-$(test_prog) : $(shared_sources:%c=%o)
-
-clean :
-	$(CLEANINGMSG) $(MSGSUBDIR)
-	rm -f *.o $(test_prog)
-	rm -Rf .DEP
-
-install :
-
-
-#as a gneral rule includ must be last : it defines rules, since make execute the first found rule 
-#in case of 'make' this can cause you not having the right behaviour
-#remember : a Makefile isn't linearly executed....
-export TOPSRC_DIR?=$(PWD)
-include $(TOPSRC_DIR)/Makefile.confiserie
-
-
-#create the dependencies (the - is for avoiding it to be too verbose)
--include $(test_sources:%.c=.DEP/%.d)
-
+#helpers
+include ${confiserie}/C/Makefile.autoapp
+include ${confiserie}/C/Makefile.beautifull_rules
 
 

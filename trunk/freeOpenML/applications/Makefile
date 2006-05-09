@@ -5,55 +5,31 @@
 #* package
 #************************************************************************/
 
-#normaly you shou only modify  the test_sources variable to add a test here
+#loading configuration file
+export TOPSRC_DIR?=..
+include $(TOPSRC_DIR)/Makefile.confiserie
 
 #general variables
 .PHONY : all test clean debug
 
+#defaut target
+all:
 
 #addition to environnement variable, be carefull when nesting subdirs in this makefile
 LDFLAGS+= -L../lib -lOpenML
 CFLAGS+= -I../include -Wall -Werror-implicit-function-declaration
 
 #here goes your sources
-oml_capabilites_sources = oml_capabilities.c
-
-programms = oml_capabilities
-
-
-#now the target
-all : $(programms)
-	$(SUCCESSMSG) $<
-	
-oml_capabilites : $(oml_capabilites_sources:%.c=%.o)
-	$(CCMESG) $@
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $<
-
+bin_PROGRAMS = oml_capabilites
+oml_capabilites_SOURCES = oml_capabilities.c
 
 #a special target : it only modify CFLAGS variables before making it the standard way
 debug : CFLAGS+= -g3 -gdwarf-2 -O0
 debug : all
 
-#see info make for automatic variable substitution
-$(test_prog) : $(shared_sources:%c=%o)
-
-clean :
-	$(CLEANINGMSG) $(MSGSUBDIR)
-	rm -f *.o $(programms)
-	rm -Rf .DEP
-
-install :
-
-
-#as a gneral rule includ must be last : it defines rules, since make execute the first found rule 
-#in case of 'make' this can cause you not having the right behaviour
-#remember : a Makefile isn't linearly executed....
-export TOPSRC_DIR?=$(PWD)
-include $(TOPSRC_DIR)/Makefile.confiserie
-
-
-#create the dependencies (the - is for avoiding it to be too verbose)
--include $(oml_capabilites_sources:%.c=.DEP/%.d)
+#helper makefiles 
+include $(confiserie)/C/Makefile.autoapp
+include $(confiserie)/C/Makefile.beautifull_rules
 
 
 

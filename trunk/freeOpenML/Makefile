@@ -1,6 +1,9 @@
-# (C) 2005-2005 MALET Jean-Luc aka cityhunter
-#this file is provided under the thermes of the BSD licence, you can use it, modify it
-#include it into your commercial software as you want
+#/***********************************************************************
+#* copyright (c) 2004-2006 MALET Jean-luc aka cityhunter
+#* This library is free software; you can redistribute it and/or modify
+#* it under the terms of the LGPL v2.1 or latter at your option
+#* http://www.gnu.org/copyleft/lesser.html
+#************************************************************************/
 
 # as a general rule to avoid issues
 #    make variables first
@@ -43,7 +46,6 @@ distclean :
 
 # special rule :: with nothing that follow tells make to rebuild the subdirs everytime
 # this rules runs make on the subtree
-
 $(subdirs) ::
 	echo ${PWD}/$@/
 	test -e $@ || mkdir -p $@

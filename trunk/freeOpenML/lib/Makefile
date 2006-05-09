@@ -5,22 +5,23 @@
 #* package
 #************************************************************************/ 
 
-#general variables
-.PHONY : all lib clean debug tests
-all:
-
-#includes (env)
+#load configuration
 export TOPSRC_DIR?=..
 include $(TOPSRC_DIR)/Makefile.confiserie
+all:
 
 #addition to environnement variable, be carefull when nesting subdirs in this makefile
 LDFLAGS  += -lpthread -ldl -lrt
 CFLAGS   += -Wall -fPIC -Werror-implicit-function-declaration  
 CPPFLAGS += -I../include
 
+#general variables
+.PHONY : all lib clean debug tests
+all:
 
-lib_LIBRARIES = libOpenML
-export libOpenML_VERSION="0.0.0"
+lib_LIBRARIES += libOpenML
+
+libOpenML_VERSION = 0.0.0
 #here goes your sources
 libOpenML_SOURCES = mlBeginTransfer.c mlGetCapabilities.c mlGetSystemUST.c
 libOpenML_SOURCES += mlModules.c mlPvValueToString.c mlSendMessage.c 
@@ -36,12 +37,8 @@ libOpenML_SOURCES += mlMessageQueue.c
 debug : CFLAGS+= -g3 -gdwarf-2 -O0
 debug : all
 	
-clean : 
-	$(CLEANINGMSG) $(MSGSUBDIR)
-
-#includes (helpers)
+#create the dependencies (the - is for avoiding it to be too verbose)
 include ${confiserie}/Makefiles/Makefile.autolib
 include ${confiserie}/C/Makefile.beautifull_rules
-
 
 
