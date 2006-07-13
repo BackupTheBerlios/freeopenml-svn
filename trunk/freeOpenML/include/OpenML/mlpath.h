@@ -26,12 +26,12 @@
 	// See also the subsystem-independent capabilities defined in mlparam.h
 	//--------------------------------------------------------------------------
 
-	#define ML_PATH_TYPE_INT32     							MLparam(path, int32, 0)
-	#define ML_PATH_SRC_JACK_ID    							MLparam(path, int64, 1)
-	#define ML_PATH_DST_JACK_ID    							MLparam(path, int64, 2)
-	#define MLI_PATH_INTERNAL_ID   							MLparam(path, int32, 3)
-	#define ML_PATH_PIXEL_LINE_ALIGNMENT_INT32 	MLparam(path, int32, 4)
-	#define ML_PATH_BUFFER_ALIGNMENT_INT32 			MLparam(path, int32, 5)
+	#define ML_PATH_TYPE_INT32     							MLparam(ML_CLASS_PATH, int32, 0)
+	#define ML_PATH_SRC_JACK_ID    							MLparam(ML_CLASS_PATH, int64, 1)
+	#define ML_PATH_DST_JACK_ID    							MLparam(ML_CLASS_PATH, int64, 2)
+	#define MLI_PATH_INTERNAL_ID   							MLparam(ML_CLASS_PATH, int32, 3)
+	#define ML_PATH_PIXEL_LINE_ALIGNMENT_INT32 	MLparam(ML_CLASS_PATH, int32, 4)
+	#define ML_PATH_BUFFER_ALIGNMENT_INT32 			MLparam(ML_CLASS_PATH, int32, 5)
 	#define ML_PATH_FEATURES_BYTE_ARRAY 				ML_FEATURES
 
 

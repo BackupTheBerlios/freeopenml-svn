@@ -50,7 +50,7 @@ $(subdirs) ::
 	echo ${PWD}/$@/
 	test -e $@ || mkdir -p $@
 	test -e $@/Makefile || cp ${TOPSRC_DIR}/${MSGSUBDIR}/$@/Makefile $@/Makefile
-	$(MAKE) $(MAKECMDGOALS) -C $@ MSGSUBDIR=${MSGSUBDIR}/$@ 
+	$(MAKE) $(MAKECMDGOALS) -C $@ MSGSUBDIR=${MSGSUBDIR}/$@/ 
 	echo ${PWD}
 
 

@@ -34,9 +34,10 @@ mlPvGetCapabilities( const u_int64_t id, const u_int64_t paramid,
 				{
 					localhost_cap[0].param = ML_ID;
 					localhost_cap[0].value.int64=ML_SYSTEM_LOCALHOST;
-					localhost_cap[1].param=ML_NAME;
+					localhost_cap[1].param = ML_NAME;
 					localhost_cap[1].value.pByte=(uint8_t*)name;
-					localhost_cap[2].length=(sizeof(name)/sizeof(char));
+					localhost_cap[2].length = (sizeof(name) /
+                                                                   sizeof(char));
 					localhost_cap[2].value.pInt64=malloc(sizeof(u_int64_t)*device_count);
 					localhost_cap[2].param=ML_SYSTEM_DEVICE_IDS;
 					localhost_cap[3].value.pInt64=NULL;
@@ -59,8 +60,8 @@ mlPvGetCapabilities( const u_int64_t id, const u_int64_t paramid,
 				}
 		}
 	while ( current != NULL  && 
-			    sid.system != current->id.system &&
-				 	sid.device != current->id.device )
+			    sid.internal_id.system != current->id.internal_id.system &&
+				 	sid.internal_id.device != current->id.internal_id.device )
 		current=current->next;
 	if ( current == NULL )
 		{

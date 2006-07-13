@@ -23,11 +23,11 @@
 	* not read them fast enough.  It is not maskable (except indirectly,
 	* by not enabling any events).
 	*/
-	#define ML_EVENT_QUEUE   MLparam (event, int32,  2)
-	#define ML_EVENT_DEVICE	 MLparam (event, int32,  3)
-	#define ML_EVENT_VIDEO	 MLparam (event, int32,  4)
-	#define ML_EVENT_XCODE	 MLparam (event, int32,  5)
-	#define ML_EVENT_AUDIO	 MLparam (event, int32,  6)
+	#define ML_EVENT_QUEUE   MLparam (ml_event, int32,  2)
+	#define ML_EVENT_DEVICE	 MLparam (ml_event, int32,  3)
+	#define ML_EVENT_VIDEO	 MLparam (ml_event, int32,  4)
+	#define ML_EVENT_XCODE	 MLparam (ml_event, int32,  5)
+	#define ML_EVENT_AUDIO	 MLparam (ml_event, int32,  6)
 
 	/*
 	* The following event messages are generated spontaneously by devices.

@@ -31,16 +31,16 @@
 	#define ML_XCODE_DST_PIPE ((int64_t)0x8 )
 
 
-	#define ML_XCODE_ENGINE_TYPE_INT32      	  MLparam (xcode, int32,				0)
-	#define ML_XCODE_IMPLEMENTATION_TYPE_INT32	MLparam (xcode, int32,				1)
-	#define ML_XCODE_PIXEL_LINE_ALIGNMENT_INT32	MLparam (xcode, int32,				2)
+	#define ML_XCODE_ENGINE_TYPE_INT32      	  MLparam (ML_CLASS_XCODE, int32,				0)
+	#define ML_XCODE_IMPLEMENTATION_TYPE_INT32	MLparam (ML_CLASS_XCODE, int32,				1)
+	#define ML_XCODE_PIXEL_LINE_ALIGNMENT_INT32	MLparam (ML_CLASS_XCODE, int32,				2)
 	#define ML_XCODE_BUFFER_ALIGNMENT_INT32			ML_PATH_BUFFER_ALIGNMENT_INT32
-	#define ML_XCODE_EXTENSIONS_BYTE_ARRAY   	 	MLparam (xcode, byte_array, 	3)
-	#define ML_XCODE_SRC_COUNT             			MLparam (xcode, int64_array, 6)
-	#define ML_XCODE_DEST_COUNT            			MLparam (xcode, int64_array, 7)
-	#define ML_PIPE_TYPE_INT32 									MLparam (xcode, int32, 			8)
-	#define ML_XCODE_SPATIAL_QUALITY_REAL32     MLparam (xcode, real32,      9)
-	#define ML_XCODE_BITRATE_INT32							MLparam (xcode, int32,				10)
+	#define ML_XCODE_EXTENSIONS_BYTE_ARRAY   	 	MLparam (ML_CLASS_XCODE, byte_array, 	3)
+	#define ML_XCODE_SRC_COUNT             			MLparam (ML_CLASS_XCODE, int64_array, 6)
+	#define ML_XCODE_DEST_COUNT            			MLparam (ML_CLASS_XCODE, int64_array, 7)
+	#define ML_PIPE_TYPE_INT32 									MLparam (ML_CLASS_XCODE, int32, 			8)
+	#define ML_XCODE_SPATIAL_QUALITY_REAL32     MLparam (ML_CLASS_XCODE, real32,      9)
+	#define ML_XCODE_BITRATE_INT32							MLparam (ML_CLASS_XCODE, int32,				10)
 	#define ML_XCODE_FEATURES										ML_FEATURES
 
 	enum __pipe_type {

@@ -5,10 +5,9 @@
 * package
 ************************************************************************/
 
-
-
 #ifndef _ML_BUFFERS_H_
 	#define _ML_BUFFERS_H_
+        #include <limits.h>
 	#ifdef __cplusplus
 	extern "C" {
 	#endif
@@ -18,12 +17,20 @@
 
 	struct sbuffer {
 		sem_t sem;
-		u_int8_t data;
+		uint8_t data;
 		};
 
-
+        struct MLbuffer_t {
+                uint64_t id;
+                char desc[PATH_MAX];
+                off_t offset;
+                size_t size;
+                struct MLbuffer_t* next;
+        };
 	#ifdef __cplusplus
 	}
 	#endif
 
+uint64_t mlRegisterBuffer(struct MLbuffer_t* bufferdesc);
+uint64_t mlGetBufferDesc(struct MLbuffer_t* bufferdesc, uint64_t id);
 #endif /* _ML_BUFFERS_H_ */

@@ -15,17 +15,10 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-MLpv open_msg[]={
-	{
-	.param=ML_END,
-	}
-};
-
-
 int32_t MLAPI mlOpen( u_int64_t id, MLpv* options, MLopenid* openid)
 {
-	struct mlID* current = localhost;
-	struct mlID** newid=(struct mlID**) openid;
+	struct ml_id* current = ML_localhost;
+	struct ml_id** newid=(struct ml_id**) openid;
 	errno=0;
 	int i;
 
@@ -39,7 +32,8 @@ int32_t MLAPI mlOpen( u_int64_t id, MLpv* options, MLopenid* openid)
 	if( *newid == NULL )
 		goto err;
 
-	while( current != NULL  && id != current->id )
+	while( current != NULL  &&
+               id != current->id )
 		current=current->next;
 	if( current == NULL )
 		{

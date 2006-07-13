@@ -26,11 +26,11 @@
 	// See also the subsystem-independent capabilities defined in mlparam.h
 	//--------------------------------------------------------------------------
 
-	#define ML_JACK_TYPE_INT32	    			MLparam (jack, int32, 0)
-	#define ML_JACK_DIRECTION_INT32   		MLparam (jack, int32, 1)
-	#define ML_JACK_COMPONENT_SIZE_INT32 	MLparam (jack, int32, 2)
+	#define ML_JACK_TYPE_INT32	    			MLparam (ML_CLASS_JACK, int32, 0)
+	#define ML_JACK_DIRECTION_INT32   		MLparam (ML_CLASS_JACK, int32, 1)
+	#define ML_JACK_COMPONENT_SIZE_INT32 	MLparam (ML_CLASS_JACK, int32, 2)
 	#define ML_JACK_FEATURES_BYTE_ARRAY 	ML_FEATURES
-	#define ML_JACK_INTERNAL_ID		    		MLparam (jack, int32, 3)
+	#define ML_JACK_INTERNAL_ID		    		MLparam (ML_CLASS_JACK, int32, 3)
 
 	// ML_JACK_TYPE enumerated values
 	enum ml_jack_type

@@ -40,5 +40,6 @@ debug : all
 #create the dependencies (the - is for avoiding it to be too verbose)
 include ${confiserie}/Makefiles/Makefile.autolib
 include ${confiserie}/C/Makefile.beautifull_rules
+include ${confiserie}/C/Makefile.auto_headers_deps
 
 

@@ -15,19 +15,19 @@
 	#endif
 
 	enum ML_param_class {
-			cap,
-			user,
-			jack,
-			video,
-			image,
-			xcode,
-			buffer,
-			event,
-			path,
-			time,
-			id,
-			//~ #define ml_class_audio				15
-			custom_dd=128,
+			ML_CLASS_CAP,
+			ML_CLASS_USER,
+			ML_CLASS_JACK,
+			ML_CLASS_VIDEO,
+			ML_CLASS_IMAGE,
+			ML_CLASS_XCODE,
+			ML_CLASS_BUFFER,
+			ML_CLASS_EVENT,
+			ML_CLASS_PATH,
+			ML_CLASS_TIME,
+			ML_CLASS_ID,
+			//~ #DEFINE ML_CLASS_AUDIO				15
+			ML_CLASS_CUSTOM_DD=128,
 	};
 
 		//************types defines
@@ -39,14 +39,18 @@
 			int64,
 			real32,
 			real64,
-			
-			byte_pointer,
-			int16_pointer,
-			int32_pointer,
-			int64_pointer,
-			real32_pointer,
-			real64_pointer,
-			pv_pointer,
+		// pointer parameters have been removed
+                // use shared memory buffer instead
+		//	byte_pointer,
+		//	int16_pointer,
+		//	int32_pointer,
+		//	int64_pointer,
+		//	real32_pointer,
+		//	real64_pointer,
+		//	pv_pointer,
+                        
+                        buffer_id,
+                        buffer_desc,
 
 			byte_array,
 			int16_array,
@@ -77,6 +81,8 @@
 				int64_t*  pInt64;
 				float* pReal32;
 				double* pReal64;
+                                uint64_t bufferid;
+                                struct MLbuffer_t* buffer_desc;
 				struct MLpv_t* pPv;
 				struct MLpv_t** pMsg;
 	} MLvalue;

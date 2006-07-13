@@ -16,7 +16,7 @@
 #include <dirent.h>
 
 #warning protect localhost parsing with mutexes
-struct mlID *localhost= NULL;
+struct ml_id *ML_localhost= NULL;
 u_int16_t device_count;
 
 //used for internal testing
